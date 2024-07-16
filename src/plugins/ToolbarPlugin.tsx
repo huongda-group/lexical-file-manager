@@ -193,6 +193,7 @@ export default function ToolbarPlugin() {
       </div>
       {openFileManager && (
         <FileManagerComponent
+          editor={editor}
           onClose={() => {
             setOpenFileManager(false);
           }}

@@ -13,6 +13,8 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { FileManagerFile, FileManagerPayload } from '../FileManager.d';
 import { Dispatch, SetStateAction, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { LexicalEditor } from 'lexical';
+import { INSERT_FILE_COMMAND } from '../FileManager';
 
 export function File({
   item,
@@ -87,7 +89,13 @@ export function File({
   );
 }
 
-export function FileManagerComponent({ onClose }: { onClose: () => void }) {
+export function FileManagerComponent({
+  onClose,
+  editor,
+}: {
+  onClose: () => void;
+  editor: LexicalEditor;
+}) {
   const [listFiles, setListFiles] = useState<FileManagerFile[]>(
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((item) => ({
       id: item.toString(),
@@ -128,6 +136,7 @@ export function FileManagerComponent({ onClose }: { onClose: () => void }) {
             <Grid container spacing={[2, 2]} sx={{ width: '100% !important' }}>
               {listFiles.map((item) => (
                 <File
+                  key={item.id}
                   item={item}
                   selected={selected}
                   setSelected={setSelected}
@@ -183,15 +192,32 @@ export function FileManagerComponent({ onClose }: { onClose: () => void }) {
                 <Button
                   variant="contained"
                   sx={{ textTransform: 'unset', mr: 2 }}
+                  onClick={() => {
+                    editor.dispatchCommand(INSERT_FILE_COMMAND, {
+                      name: selected.name,
+                      src: selected.src,
+                    });
+                    onClose();
+                  }}
                 >
                   Insert
                 </Button>
                 <Button
                   variant="outlined"
-                  sx={{ textTransform: 'unset' }}
+                  sx={{ textTransform: 'unset', mr: 2 }}
                   color="error"
                 >
                   Delete
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  sx={{ textTransform: 'unset' }}
+                  onClick={() => {
+                    setSelected(undefined);
+                  }}
+                >
+                  Cancel
                 </Button>
               </Box>
             </Grid>
