@@ -1,5 +1,6 @@
-import { $applyNodeReplacement, DecoratorNode, NodeKey } from 'lexical';
-import { FileManagerPayload } from '../FileManager.d';
+import React from 'react';
+import { $applyNodeReplacement, DecoratorNode, EditorConfig, LexicalEditor, NodeKey } from 'lexical';
+// import { FileManagerPayload } from './FileManager.d';
 
 export class FileManagerNode extends DecoratorNode<JSX.Element> {
   __src: string;
@@ -20,7 +21,7 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(): // config: EditorConfig
-  HTMLElement {
+    HTMLElement {
     const span = document.createElement('span');
     return span;
   }
@@ -28,11 +29,11 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
   updateDOM(): // prevNode: FileManagerNode,
   // dom: HTMLElement,
   // config: EditorConfig
-  false {
+    false {
     return false;
   }
 
-  decorate(): JSX.Element {
+  decorate(_editor: LexicalEditor, _config: EditorConfig): JSX.Element {
     return (
       <a href={this.__src} target="_blank">
         {this.__name}
@@ -41,10 +42,10 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
   }
 }
 
-export function $createFileManagerNode({
-  src,
-  name,
-  key,
-}: FileManagerPayload): FileManagerNode {
-  return $applyNodeReplacement(new FileManagerNode(src, name, key));
-}
+// export function $createFileManagerNode({
+//                                          src,
+//                                          name,
+//                                          key
+//                                        }: FileManagerPayload): FileManagerNode {
+//   return $applyNodeReplacement(new FileManagerNode(src, name, key));
+// }

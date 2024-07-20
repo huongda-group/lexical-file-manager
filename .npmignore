@@ -1,0 +1,6 @@
+.github/
+src/
+.npmrc
+.package-lock.json
+tsconfig.json
+example/

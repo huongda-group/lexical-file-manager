@@ -1,0 +1,29 @@
+{
+  "name": "@huongda-group/lexical-file-manager-example",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "upgrade": "npm install -g npm-check-updates && ncu -u && npm install"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@lexical/react": "0.16.1",
+    "@mui/icons-material": "^5.16.4",
+    "@mui/material": "^5.16.4",
+    "lexical": "0.16.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  }
+}

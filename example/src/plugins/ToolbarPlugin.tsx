@@ -16,10 +16,10 @@ import {
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
-  UNDO_COMMAND,
+  UNDO_COMMAND
 } from 'lexical';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FileManagerComponent } from './file-manager/components';
+import { FileManagerButton } from '@huongda-group/lexical-file-manager';
 
 const LowPriority = 1;
 
@@ -36,7 +36,7 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [openFileManager, setOpenFileManager] = useState(false);
+  // const [openFileManager, setOpenFileManager] = useState(false);
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -181,24 +181,37 @@ export default function ToolbarPlugin() {
           <i className="format justify-align" />
         </button>
         <Divider />
-        <button
-          onClick={() => {
-            setOpenFileManager(true);
-          }}
-          className="toolbar-item"
-          aria-label="File Manager"
-        >
-          <i className="format file-manager" />
-        </button>
+        <FileManagerButton editor={editor} files={[
+          {
+            id: '1',
+            name: 'Image 1',
+            url: 'https://via.placeholder.com/150',
+            size: '150x150',
+            thumbnail: 'https://via.placeholder.com/50'
+          },
+          {
+            id: '2',
+            name: 'Image 2',
+            url: 'https://via.placeholder.com/150',
+            size: '150x150',
+            thumbnail: 'https://via.placeholder.com/50'
+          },
+          {
+            id: '3',
+            name: 'Image 3',
+            url: 'https://via.placeholder.com/150',
+            size: '150x150',
+            thumbnail: 'https://via.placeholder.com/50'
+          }
+        ]} aria-label="File Manager">
+          <button
+            className="toolbar-item"
+            aria-label="File Manager"
+          >
+            <i className="format file-manager" />
+          </button>
+        </FileManagerButton>
       </div>
-      {openFileManager && (
-        <FileManagerComponent
-          editor={editor}
-          onClose={() => {
-            setOpenFileManager(false);
-          }}
-        />
-      )}
     </>
   );
 }
