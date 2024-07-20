@@ -1,6 +1,5 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { useEffect, useState } from 'react';
-import { mergeRegister, $wrapNodeInElement } from '@lexical/utils';
+import { $wrapNodeInElement, mergeRegister } from '@lexical/utils';
 import {
   $createParagraphNode,
   $insertNodes,
@@ -9,6 +8,7 @@ import {
   createCommand,
   LexicalCommand,
 } from 'lexical';
+import { useEffect } from 'react';
 import { FileManagerPayload } from './FileManager.d';
 import { $createFileManagerNode, FileManagerNode } from './node';
 

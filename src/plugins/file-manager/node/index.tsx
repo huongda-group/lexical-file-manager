@@ -1,9 +1,4 @@
-import {
-  $applyNodeReplacement,
-  DecoratorNode,
-  EditorConfig,
-  NodeKey,
-} from 'lexical';
+import { $applyNodeReplacement, DecoratorNode, NodeKey } from 'lexical';
 import { FileManagerPayload } from '../FileManager.d';
 
 export class FileManagerNode extends DecoratorNode<JSX.Element> {
@@ -24,16 +19,16 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
     this.__name = name;
   }
 
-  createDOM(config: EditorConfig): HTMLElement {
+  createDOM(): // config: EditorConfig
+  HTMLElement {
     const span = document.createElement('span');
     return span;
   }
 
-  updateDOM(
-    prevNode: FileManagerNode,
-    dom: HTMLElement,
-    config: EditorConfig
-  ): false {
+  updateDOM(): // prevNode: FileManagerNode,
+  // dom: HTMLElement,
+  // config: EditorConfig
+  false {
     return false;
   }
 

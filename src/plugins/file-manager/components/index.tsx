@@ -1,20 +1,20 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import UploadIcon from '@mui/icons-material/Upload';
 import {
   Box,
   Button,
-  Card,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
   Grid,
+  Typography,
 } from '@mui/material';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import { FileManagerFile, FileManagerPayload } from '../FileManager.d';
-import { Dispatch, SetStateAction, useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { LexicalEditor } from 'lexical';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { INSERT_FILE_COMMAND } from '../FileManager';
+import { FileManagerFile } from '../FileManager.d';
 
 export function File({
   item,
@@ -122,7 +122,14 @@ export function FileManagerComponent({
         },
       }}
     >
-      <DialogTitle>File Manager</DialogTitle>
+      <DialogTitle>
+        <Box display="flex" justifyContent="space-between">
+          <Typography>File Manager</Typography>
+          <Button variant="contained" sx={{ textTransform: 'unset' }}>
+            <UploadIcon /> Upload
+          </Button>
+        </Box>
+      </DialogTitle>
       <DialogContent
         dividers
         sx={{ height: '100%', paddingBottom: 0, paddingTop: 0 }}
