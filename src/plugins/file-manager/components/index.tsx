@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { LexicalEditor } from 'lexical';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { INSERT_FILE_COMMAND } from '../FileManager';
 import { FileManagerFile } from '../FileManager.d';
 
@@ -92,9 +92,15 @@ export function File({
 export function FileManagerComponent({
   onClose,
   editor,
+  onFiles,
+  onDelete,
+  onInsert,
 }: {
   onClose: () => void;
   editor: LexicalEditor;
+  onFiles?: (value: FileManagerFile[]) => void;
+  onDelete?: (value: FileManagerFile) => void;
+  onInsert?: (value: FileManagerFile) => void;
 }) {
   const [listFiles, setListFiles] = useState<FileManagerFile[]>(
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((item) => ({
@@ -103,6 +109,10 @@ export function FileManagerComponent({
       src: 'https://www.google.com',
     }))
   );
+  useEffect(() => {
+    if (onFiles) onFiles(listFiles);
+  }, [listFiles]);
+
   const [selected, setSelected] = useState<FileManagerFile | undefined>(
     undefined
   );
@@ -148,6 +158,7 @@ export function FileManagerComponent({
                   selected={selected}
                   setSelected={setSelected}
                   remove={async (item: FileManagerFile) => {
+                    if (onDelete) onDelete(item);
                     setListFiles(listFiles.filter((e) => e.id !== item.id));
                     if (selected && item.id === selected.id) {
                       setSelected(undefined);
@@ -200,6 +211,7 @@ export function FileManagerComponent({
                   variant="contained"
                   sx={{ textTransform: 'unset', mr: 2 }}
                   onClick={() => {
+                    if (onInsert) onInsert(selected);
                     editor.dispatchCommand(INSERT_FILE_COMMAND, {
                       name: selected.name,
                       src: selected.src,
@@ -213,6 +225,9 @@ export function FileManagerComponent({
                   variant="outlined"
                   sx={{ textTransform: 'unset', mr: 2 }}
                   color="error"
+                  onClick={() => {
+                    if (onDelete) onDelete(selected);
+                  }}
                 >
                   Delete
                 </Button>
