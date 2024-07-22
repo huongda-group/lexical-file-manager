@@ -19,7 +19,7 @@ import {
   UNDO_COMMAND
 } from 'lexical';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FileManagerButton } from '@huongda-group/lexical-file-manager';
+import { FileManager } from '@huongda-group/lexical-file-manager';
 
 const LowPriority = 1;
 
@@ -181,7 +181,7 @@ export default function ToolbarPlugin() {
           <i className="format justify-align" />
         </button>
         <Divider />
-        <FileManagerButton editor={editor} files={[
+        <FileManager editor={editor} files={[
           {
             id: '1',
             name: 'Image 1',
@@ -210,7 +210,7 @@ export default function ToolbarPlugin() {
           >
             <i className="format file-manager" />
           </button>
-        </FileManagerButton>
+        </FileManager>
       </div>
     </>
   );
