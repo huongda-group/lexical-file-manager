@@ -10,7 +10,14 @@
 
 This package provides a set of components and hooks for Lexical that allow for manage files (like Wordpress media) in React applications.
 <br />
+<b>Pull requests are welcome.</b>
+***
+
 See full [example](https://github.com/huongda-group/lexical-file-manager/tree/main/example).
+
+![Hương Đá Group Lexical file manager](https://github.com/huongda-group/lexical-file-manager/blob/main/preview/1.png?raw=true "Hương Đá Group Lexical file manager")
+
+***
 ## Features
 - [x] List files.
 - [x] Upload file.
@@ -21,7 +28,7 @@ See full [example](https://github.com/huongda-group/lexical-file-manager/tree/ma
 - [ ] View file image
 - [ ] View file video
 - [ ] Folder manager
-
+***
 ## Getting started
 Install `lexical` and `@lexical/react`:
 
@@ -29,7 +36,6 @@ Install `lexical` and `@lexical/react`:
 npm install --save lexical @lexical/react
 ```
 Install `@huongda-group/lexical-file-manager`:
-
 ```
 npm install --save @huongda-group/lexical-file-manager
 ```
@@ -108,5 +114,13 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 </button>
 </FileManager>
 ```
+### Props
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+
+***
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/huongda-group/lexical-file-manager/blob/main/LICENSE)

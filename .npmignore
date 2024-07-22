@@ -4,3 +4,4 @@ src/
 .package-lock.json
 tsconfig.json
 example/
+preview/
