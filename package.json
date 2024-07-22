@@ -14,7 +14,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npm link && nodemon -e ts,tsx --exec npm run build --ignore ./hdg",
+    "dev": "npm link && nodemon -e ts,tsx --exec npm run build --ignore hdg",
     "build": "tsc && npx tsc-alias",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install"
   },

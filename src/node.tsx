@@ -1,8 +1,8 @@
 import React from 'react';
 import { $applyNodeReplacement, DecoratorNode, EditorConfig, LexicalEditor, NodeKey } from 'lexical';
-// import { FileManagerPayload } from './FileManager.d';
+import { File } from './element';
 
-export class FileManagerNode extends DecoratorNode<JSX.Element> {
+export class Node extends DecoratorNode<JSX.Element> {
   __src: string;
   __name: string;
 
@@ -10,8 +10,8 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
     return 'file-manager';
   }
 
-  static clone(node: FileManagerNode): FileManagerNode {
-    return new FileManagerNode(node.__src, node.__name);
+  static clone(node: Node): Node {
+    return new Node(node.__src, node.__name);
   }
 
   constructor(src: string, name: string, key?: NodeKey) {
@@ -26,9 +26,7 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
     return span;
   }
 
-  updateDOM(): // prevNode: FileManagerNode,
-  // dom: HTMLElement,
-  // config: EditorConfig
+  updateDOM():
     false {
     return false;
   }
@@ -42,10 +40,7 @@ export class FileManagerNode extends DecoratorNode<JSX.Element> {
   }
 }
 
-// export function $createFileManagerNode({
-//                                          src,
-//                                          name,
-//                                          key
-//                                        }: FileManagerPayload): FileManagerNode {
-//   return $applyNodeReplacement(new FileManagerNode(src, name, key));
-// }
+export function $createFileManagerNode(file: File): Node {
+  // TODO: update this to use the file.url
+  return $applyNodeReplacement(new Node(src, name, key));
+}

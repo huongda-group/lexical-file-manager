@@ -8,6 +8,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import ExampleTheme from './ExampleTheme';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
+import { FileManagerPlugin } from '@huongda-group/lexical-file-manager';
 
 const placeholder = 'Enter some rich text...';
 
@@ -18,7 +19,7 @@ const editorConfig = {
     throw error;
   },
   // The editor theme
-  theme: ExampleTheme,
+  theme: ExampleTheme
 };
 
 export default function App() {
@@ -42,7 +43,7 @@ export default function App() {
           <HistoryPlugin />
           <AutoFocusPlugin />
           <TreeViewPlugin />
-          {/*<FileManage.Plugin />*/}
+          <FileManagerPlugin />
         </div>
       </div>
     </LexicalComposer>
