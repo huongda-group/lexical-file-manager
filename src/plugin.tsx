@@ -10,7 +10,7 @@ import {
   LexicalCommand
 } from 'lexical';
 import { useEffect } from 'react';
-import { $createFileManagerNode, FileManagerNode } from './node';
+import { $createFileManagerNode, Node } from './node';
 import { File } from './element';
 
 export const INSERT_FILE_COMMAND: LexicalCommand<File> =
@@ -19,7 +19,7 @@ export const INSERT_FILE_COMMAND: LexicalCommand<File> =
 export default function Plugin(): JSX.Element {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
-    if (!editor.hasNodes([FileManagerNode])) {
+    if (!editor.hasNodes([Node])) {
       throw new Error(
         'FileManagerPlugin: FileManagerNode not registered on editor'
       );

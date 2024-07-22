@@ -42,5 +42,5 @@ export class Node extends DecoratorNode<JSX.Element> {
 
 export function $createFileManagerNode(file: File): Node {
   // TODO: update this to use the file.url
-  return $applyNodeReplacement(new Node(src, name, key));
+  return $applyNodeReplacement(new Node(file.url, file.name, file.id));
 }
