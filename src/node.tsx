@@ -2,7 +2,7 @@ import React from 'react';
 import { $applyNodeReplacement, DecoratorNode, EditorConfig, LexicalEditor, NodeKey } from 'lexical';
 import { File } from './element';
 
-export class Node extends DecoratorNode<JSX.Element> {
+export default class Node extends DecoratorNode<JSX.Element> {
   __src: string;
   __name: string;
 
@@ -40,7 +40,7 @@ export class Node extends DecoratorNode<JSX.Element> {
   }
 }
 
-export function $createFileManagerNode(file: File): Node {
+export function $createNode(file: File): Node {
   // TODO: update this to use the file.url
   return $applyNodeReplacement(new Node(file.url, file.name, file.id));
 }

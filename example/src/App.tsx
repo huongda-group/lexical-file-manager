@@ -8,17 +8,16 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import ExampleTheme from './ExampleTheme';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
-import { FileManagerPlugin } from '@huongda-group/lexical-file-manager';
+import { FileManagerPlugin, FileManagerNode } from '@huongda-group/lexical-file-manager';
 
 const placeholder = 'Enter some rich text...';
 
 const editorConfig = {
   namespace: 'React.js Demo',
-  // nodes: [FileManage.Node],
+  nodes: [FileManagerNode],
   onError(error: Error) {
     throw error;
   },
-  // The editor theme
   theme: ExampleTheme
 };
 
