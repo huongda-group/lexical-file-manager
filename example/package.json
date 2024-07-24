@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm link @huongda-group/lexical-file-manager && vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install"
@@ -15,8 +15,10 @@
     "@lexical/react": "0.16.1",
     "@mui/icons-material": "^5.16.4",
     "@mui/material": "^5.16.4",
+    "bootstrap": "^5.3.3",
     "lexical": "0.16.1",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {

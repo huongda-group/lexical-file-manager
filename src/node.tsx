@@ -1,5 +1,11 @@
 import React from 'react';
-import { $applyNodeReplacement, DecoratorNode, EditorConfig, LexicalEditor, NodeKey } from 'lexical';
+import {
+  $applyNodeReplacement,
+  DecoratorNode,
+  EditorConfig,
+  LexicalEditor,
+  NodeKey,
+} from 'lexical';
 import { File } from './element';
 
 export default class Node extends DecoratorNode<JSX.Element> {
@@ -21,13 +27,12 @@ export default class Node extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(): // config: EditorConfig
-    HTMLElement {
+  HTMLElement {
     const span = document.createElement('span');
     return span;
   }
 
-  updateDOM():
-    false {
+  updateDOM(): false {
     return false;
   }
 

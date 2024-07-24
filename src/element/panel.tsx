@@ -1,163 +1,137 @@
 import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
-import UploadIcon from '@mui/icons-material/Upload';
+import { Button, Col, Container, Modal, Row, Stack } from 'react-bootstrap';
+import { File, PanelProps, PanelState } from './index';
 import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Grid,
-  Typography
-} from '@mui/material';
-import { PanelProps, PanelState, File } from './index';
+  Upload as UploadIcon,
+  FileEarmark as FileEarmarkIcon,
+} from 'react-bootstrap-icons';
 import FileComponent from './file';
 
-export default class PanelComponent extends React.Component<PanelProps, PanelState> {
+export default class PanelComponent extends React.Component<
+  PanelProps,
+  PanelState
+> {
   constructor(props: PanelProps) {
     super(props);
 
     this.state = {
       files: props.files,
-      selected: null
+      selected: null,
     };
   }
+
+  handleClose = () => {
+    if (this.props.onClose) this.props.onClose();
+    this.setState({
+      selected: null,
+    });
+  };
 
   render() {
     if (this.props.show) {
       return (
-        <Dialog
-          onClose={this.props.onClose}
-          open={true}
-          sx={{
-            '& .MuiDialog-paperWidthSm': {
-              minWidth: '90vw',
-              minHeight: '90vh',
-              maxWidth: '90vh',
-              height: '100%'
-            }
-          }}
+        <Modal
+          show={true}
+          onHide={this.handleClose}
+          dialogClassName="panel rounded"
+          fullscreen
         >
-          <DialogTitle>
-            <Box display="flex" justifyContent="space-between">
-              <Typography>File Manager</Typography>
-              <Button variant="contained" sx={{ textTransform: 'unset' }}>
-                <UploadIcon /> Upload
-              </Button>
-            </Box>
-          </DialogTitle>
-          <DialogContent
-            dividers
-            sx={{ height: '100%', paddingBottom: 0, paddingTop: 0 }}
-          >
-            <Grid
-              container
-              spacing={[2, 2]}
-              sx={{ height: '100%', marginTop: 'unset !important' }}
-            >
-              <Grid item xs={12} md={this.state.selected ? 9 : 12}>
-                <Grid container spacing={[2, 2]} sx={{ width: '100% !important' }}>
-                  {this.state.files.map((item: File) => (
-                    <FileComponent
-                      key={item.id}
-                      file={item} />
-                  ))}
-                </Grid>
-              </Grid>
-              {this.state.selected && (
-                <Grid
-                  item
-                  xs={this.state.selected ? 12 : 0}
-                  md={this.state.selected ? 3 : 0}
-                  sx={{
-                    borderLeft: '1px solid #E0E0E0',
-                    display: 'flex',
-                    alignItems: 'end',
-                    justifyContent: 'space-between',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    paddingBottom: 2
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                      width: '100%'
-                    }}
-                  >
-                    <Grid container display="flex" justifyContent="center">
-                      <Grid
-                        item
-                        xs={12}
-                        md={3}
-                        display="flex"
-                        justifyContent="center"
-                      >
-                        <FileCopyIcon
-                          sx={{ width: '100px', height: '100px', marginBottom: 2 }}
+          <Modal.Header>
+            <Modal.Title className="w-100">
+              <Container fluid>
+                <Row>
+                  <Col xs={8}>
+                    <p className="text-start">File Manager</p>
+                  </Col>
+                  <Col xs={4} className="d-flex justify-content-end">
+                    <Button
+                      variant="primary"
+                      className=" d-flex justify-content-between align-items-center"
+                    >
+                      <UploadIcon className="me-2" />
+                      <p className="text-start">Upload</p>
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
+            </Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body className="py-0">
+            <Container fluid className="h-100">
+              <Row className="h-100">
+                <Col xs={12} md={9}>
+                  <Container fluid className="overflow-hidden py-3">
+                    <Row className="gx-3">
+                      {this.state.files.map((item: File) => (
+                        <FileComponent
+                          key={item.id}
+                          file={item}
+                          onSelect={() => {
+                            this.setState({
+                              selected: item,
+                            });
+                          }}
                         />
-                      </Grid>
-                    </Grid>
-                    {this.state.selected.name}
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button
-                      variant="contained"
-                      sx={{ textTransform: 'unset', mr: 2 }}
-                      onClick={() => {
-                        if (this.props.onInsert) {
-                          this.props.onInsert(this.state.selected as File);
-                        }
-                      }}
-                    >
-                      Insert
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      sx={{ textTransform: 'unset', mr: 2 }}
-                      color="error"
-                      onClick={() => {
-                        if (this.props.onDelete) {
-                          this.props.onDelete(this.state.selected as File);
-                        }
-                      }}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      sx={{ textTransform: 'unset' }}
-                      onClick={() => {
-                        this.setState({
-                          selected: null
-                        });
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                  </Box>
-                </Grid>
-              )}
-            </Grid>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={this.props.onClose}
-              variant="contained"
-              sx={{ textTransform: 'unset' }}
-            >
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
+                      ))}
+                    </Row>
+                  </Container>
+                </Col>
+                <Col
+                  xs={12}
+                  md={3}
+                  className="border-start py-3 d-flex flex-column justify-content-between"
+                >
+                  {this.state.selected && (
+                    <>
+                      <div className="d-flex flex-column">
+                        <div className="file-selected d-flex flex-column justify-content-center align-items-center">
+                          <FileEarmarkIcon />
+                          <p className="text-center">
+                            {this.state.selected.name}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="d-flex justify-content-end">
+                        <Button
+                          variant="primary"
+                          className="me-2"
+                          onClick={() => {
+                            if (this.props.onInsert) {
+                              this.props.onInsert(this.state.selected as File);
+                            }
+                          }}
+                        >
+                          Insert
+                        </Button>
+                        <Button variant="danger" className="me-2">
+                          Delete
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          onClick={() => {
+                            this.setState({
+                              selected: null,
+                            });
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary">Close</Button>
+          </Modal.Footer>
+        </Modal>
       );
     }
 
-    return (<></>);
+    return <></>;
   }
 }

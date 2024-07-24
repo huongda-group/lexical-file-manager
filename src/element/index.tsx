@@ -21,7 +21,9 @@ export interface PanelState {
   selected: File | null;
 }
 
-
 export type FileProps = React.PropsWithChildren<{
-  file: File
+  file: File;
+  onSelect: (f: File) => void;
 }>;
+
+export interface FileState {}

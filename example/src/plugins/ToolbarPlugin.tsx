@@ -16,10 +16,14 @@ import {
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
-  UNDO_COMMAND
+  UNDO_COMMAND,
 } from 'lexical';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FileManager } from '@huongda-group/lexical-file-manager';
+import {
+  FileManager,
+  FileManagerNode,
+} from '@huongda-group/lexical-file-manager';
+import { INSERT_FILE_COMMAND } from '../../../src/plugin';
 
 const LowPriority = 1;
 
@@ -181,33 +185,39 @@ export default function ToolbarPlugin() {
           <i className="format justify-align" />
         </button>
         <Divider />
-        <FileManager editor={editor} files={[
-          {
-            id: '1',
-            name: 'Image 1',
-            url: 'https://via.placeholder.com/150',
-            size: '150x150',
-            thumbnail: 'https://via.placeholder.com/50'
-          },
-          {
-            id: '2',
-            name: 'Image 2',
-            url: 'https://via.placeholder.com/150',
-            size: '150x150',
-            thumbnail: 'https://via.placeholder.com/50'
-          },
-          {
-            id: '3',
-            name: 'Image 3',
-            url: 'https://via.placeholder.com/150',
-            size: '150x150',
-            thumbnail: 'https://via.placeholder.com/50'
-          }
-        ]} aria-label="File Manager">
-          <button
-            className="toolbar-item"
-            aria-label="File Manager"
-          >
+        <FileManager
+          editor={editor}
+          onInsert={(f) => {
+            editor.dispatchCommand(INSERT_FILE_COMMAND, {
+              ...f,
+            });
+          }}
+          files={[
+            {
+              id: '1',
+              name: 'Image 1',
+              url: 'https://via.placeholder.com/150',
+              size: '150x150',
+              thumbnail: 'https://via.placeholder.com/50',
+            },
+            {
+              id: '2',
+              name: 'Image 2',
+              url: 'https://via.placeholder.com/150',
+              size: '150x150',
+              thumbnail: 'https://via.placeholder.com/50',
+            },
+            {
+              id: '3',
+              name: 'Image 3',
+              url: 'https://via.placeholder.com/150',
+              size: '150x150',
+              thumbnail: 'https://via.placeholder.com/50',
+            },
+          ]}
+          aria-label="File Manager"
+        >
+          <button className="toolbar-item" aria-label="File Manager">
             <i className="format file-manager" />
           </button>
         </FileManager>

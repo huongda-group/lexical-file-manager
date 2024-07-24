@@ -7,35 +7,46 @@ export type ButtonProps = React.PropsWithChildren<{
   editor: LexicalEditor;
   files: File[];
   onClose?: () => void;
+  onInsert?: (f: File) => void;
 }>;
 
-export default class ButtonComponent extends React.Component<ButtonProps, {
-  show: boolean;
-}> {
+export default class ButtonComponent extends React.Component<
+  ButtonProps,
+  {
+    show: boolean;
+  }
+> {
   constructor(props: ButtonProps) {
     super(props);
 
     this.state = {
-      show: false
+      show: false,
     };
   }
 
   render() {
     return (
       <>
-        <PanelComponent files={this.props.files} onClose={() => {
-          this.setState({
-            show: false
-          });
-          if (this.props.onClose) {
-            this.props.onClose();
-          }
-        }} show={this.state.show} />
-        <div onClick={() => {
-          this.setState({
-            show: true
-          });
-        }}>
+        <PanelComponent
+          files={this.props.files}
+          onInsert={this.props.onInsert}
+          onClose={() => {
+            this.setState({
+              show: false,
+            });
+            if (this.props.onClose) {
+              this.props.onClose();
+            }
+          }}
+          show={this.state.show}
+        />
+        <div
+          onClick={() => {
+            this.setState({
+              show: true,
+            });
+          }}
+        >
           {this.props.children}
         </div>
       </>

@@ -1,0 +1,27 @@
+p {
+	margin: 0;
+}
+
+/* Panel css */
+.panel {
+	width:90vw;
+	height: 90vh;
+	margin: 2.2vw auto;
+  overflow: hidden;
+}
+
+.panel .file svg{
+  width: 2rem;
+  height: 2rem;
+}
+.panel .file p {
+  margin-top: .5rem;
+}
+.panel .file-selected svg {
+  width: 8rem;
+  height: 8rem;
+}
+.panel .file-selected p {
+  font-size: 1.15em;
+}
+/* Panel css */
