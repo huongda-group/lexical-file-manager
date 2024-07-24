@@ -1,3 +1,4 @@
+import { NodeKey } from 'lexical';
 import React from 'react';
 
 export interface File {
@@ -6,6 +7,7 @@ export interface File {
   url: string;
   size?: string;
   thumbnail?: string;
+  key?: NodeKey;
 }
 
 export type PanelProps = React.PropsWithChildren<{
@@ -24,6 +26,7 @@ export interface PanelState {
 export type FileProps = React.PropsWithChildren<{
   file: File;
   onSelect: (f: File) => void;
+  onDelete?: (f: File) => void;
 }>;
 
 export interface FileState {}

@@ -1,6 +1,9 @@
-import { FileEarmark as FileEarmarkIcon } from 'react-bootstrap-icons';
+import {
+  FileEarmark as FileEarmarkIcon,
+  Trash as TrashIcon,
+} from 'react-bootstrap-icons';
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 import { FileProps, FileState } from './index';
 
 export default class FileComponent extends React.Component<
@@ -15,13 +18,26 @@ export default class FileComponent extends React.Component<
     return (
       <Col
         xs={6}
-        md={2}
-        lg={1}
-        className="px-2"
+        md={3}
+        lg={2}
+        xl={2}
+        xxl={2}
+        className="px-2 mt-3 position-relative file"
         onClick={() => {
           this.props.onSelect(this.props.file);
         }}
       >
+        <Button
+          variant="danger"
+          className="position-absolute remove-file"
+          style={{ top: '4px', right: '12px', lineHeight: 1, padding: '2px' }}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (this.props.onDelete) this.props.onDelete(this.props.file);
+          }}
+        >
+          <TrashIcon />
+        </Button>
         <div
           style={{
             width: '100%',
@@ -31,9 +47,19 @@ export default class FileComponent extends React.Component<
             padding: '12px 8px',
             color: 'rgba(0, 0, 0, 0.87)',
           }}
-          className="border rounded file"
+          className="border rounded"
         >
-          <FileEarmarkIcon />
+          {this.props.file.thumbnail ? (
+            <div
+              className="rounded file-icon"
+              style={{
+                background: `url(${this.props.file.thumbnail}) center center no-repeat`,
+                backgroundSize: 'cover',
+              }}
+            ></div>
+          ) : (
+            <FileEarmarkIcon className="file-icon" />
+          )}
           <p className="text-center">{this.props.file.name}</p>
         </div>
       </Col>

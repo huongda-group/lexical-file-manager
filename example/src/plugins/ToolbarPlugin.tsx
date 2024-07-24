@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import {
+  FileManager,
+  INSERT_FILE_COMMAND,
+} from '@huongda-group/lexical-file-manager';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
 import {
@@ -19,11 +23,6 @@ import {
   UNDO_COMMAND,
 } from 'lexical';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  FileManager,
-  FileManagerNode,
-} from '@huongda-group/lexical-file-manager';
-import { INSERT_FILE_COMMAND } from '../../../src/plugin';
 
 const LowPriority = 1;
 
@@ -187,32 +186,33 @@ export default function ToolbarPlugin() {
         <Divider />
         <FileManager
           editor={editor}
-          onInsert={(f) => {
-            editor.dispatchCommand(INSERT_FILE_COMMAND, {
-              ...f,
-            });
-          }}
           files={[
             {
               id: '1',
               name: 'Image 1',
-              url: 'https://via.placeholder.com/150',
+              url: 'https://placehold.co/600x400/orange/white',
               size: '150x150',
-              thumbnail: 'https://via.placeholder.com/50',
+              thumbnail: 'https://placehold.co/600x400/orange/white',
             },
             {
               id: '2',
               name: 'Image 2',
-              url: 'https://via.placeholder.com/150',
+              url: 'https://placehold.co/600x400/black/white',
               size: '150x150',
-              thumbnail: 'https://via.placeholder.com/50',
+              thumbnail: 'https://placehold.co/600x400/black/white',
             },
             {
               id: '3',
               name: 'Image 3',
-              url: 'https://via.placeholder.com/150',
+              url: 'https://placehold.co/600x400/green/white',
               size: '150x150',
-              thumbnail: 'https://via.placeholder.com/50',
+              thumbnail: 'https://placehold.co/600x400/green/white',
+            },
+            {
+              id: '4',
+              name: 'Image 4',
+              url: 'https://placehold.co/600x400/green/white',
+              size: '150x150',
             },
           ]}
           aria-label="File Manager"

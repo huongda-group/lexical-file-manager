@@ -9,8 +9,13 @@ p {
 	margin: 2.2vw auto;
   overflow: hidden;
 }
-
-.panel .file svg{
+.panel .file .remove-file {
+  display: none;
+}
+.panel .file:hover .remove-file {
+  display: block;
+}
+.panel .file .file-icon{
   width: 2rem;
   height: 2rem;
 }
@@ -23,5 +28,10 @@ p {
 }
 .panel .file-selected p {
   font-size: 1.15em;
+}
+@media screen and (max-width: 768px) {
+  .panel .border-start {
+    border: 0 !important; 
+  }
 }
 /* Panel css */

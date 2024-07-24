@@ -24,7 +24,6 @@
     "@emotion/styled": "^11.13.0",
     "@lexical/react": "^0.16.1",
     "@lexical/utils": "^0.16.1",
-    "@mui/icons-material": "^5.16.4",
     "bootstrap": "^5.3.3",
     "copyfiles": "^2.4.1",
     "lexical": "^0.16.1",

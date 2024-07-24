@@ -60,13 +60,27 @@ export default class PanelComponent extends React.Component<
           <Modal.Body className="py-0">
             <Container fluid className="h-100">
               <Row className="h-100">
-                <Col xs={12} md={9}>
+                <Col xs={12} md={8}>
                   <Container fluid className="overflow-hidden py-3">
                     <Row className="gx-3">
                       {this.state.files.map((item: File) => (
                         <FileComponent
                           key={item.id}
                           file={item}
+                          onDelete={(file) => {
+                            if (this.props.onDelete) {
+                              this.props.onDelete(file);
+                            }
+                            this.setState({
+                              files: this.state.files.filter(
+                                (e) => e.id !== file.id
+                              ),
+                              selected:
+                                file.id === this.state.selected?.id
+                                  ? null
+                                  : this.state.selected,
+                            });
+                          }}
                           onSelect={() => {
                             this.setState({
                               selected: item,
@@ -79,7 +93,7 @@ export default class PanelComponent extends React.Component<
                 </Col>
                 <Col
                   xs={12}
-                  md={3}
+                  md={4}
                   className="border-start py-3 d-flex flex-column justify-content-between"
                 >
                   {this.state.selected && (
@@ -92,32 +106,51 @@ export default class PanelComponent extends React.Component<
                           </p>
                         </div>
                       </div>
-                      <div className="d-flex justify-content-end">
-                        <Button
-                          variant="primary"
-                          className="me-2"
-                          onClick={() => {
-                            if (this.props.onInsert) {
-                              this.props.onInsert(this.state.selected as File);
-                            }
-                          }}
-                        >
-                          Insert
-                        </Button>
-                        <Button variant="danger" className="me-2">
-                          Delete
-                        </Button>
-                        <Button
-                          variant="secondary"
-                          onClick={() => {
-                            this.setState({
-                              selected: null,
-                            });
-                          }}
-                        >
-                          Cancel
-                        </Button>
-                      </div>
+                      <Container>
+                        <Row className="justify-content-end gx-3">
+                          <Button
+                            variant="primary"
+                            className="col-3 col-md-4 col-lg-3 me-2 mt-2"
+                            onClick={() => {
+                              if (this.props.onInsert) {
+                                this.props.onInsert(
+                                  this.state.selected as File
+                                );
+                              }
+                            }}
+                          >
+                            Insert
+                          </Button>
+                          <Button
+                            variant="danger"
+                            className="col-3 col-md-4 col-lg-3 me-2 me-md-0 me-lg-2 mt-2"
+                            onClick={() => {
+                              if (this.props.onDelete && this.state.selected) {
+                                this.props.onDelete(this.state.selected);
+                              }
+                              this.setState({
+                                files: this.state.files.filter(
+                                  (e) => e.id !== this.state.selected?.id
+                                ),
+                                selected: null,
+                              });
+                            }}
+                          >
+                            Delete
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            className="col-3 col-md-4 col-lg-3 mt-2"
+                            onClick={() => {
+                              this.setState({
+                                selected: null,
+                              });
+                            }}
+                          >
+                            Cancel
+                          </Button>
+                        </Row>
+                      </Container>
                     </>
                   )}
                 </Col>
@@ -126,7 +159,9 @@ export default class PanelComponent extends React.Component<
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary">Close</Button>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
           </Modal.Footer>
         </Modal>
       );
