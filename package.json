@@ -14,10 +14,10 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npm link && nodemon -e ts,tsx --exec npm run build --ignore hdg",
-    "build": "tsc && npx tsc-alias",
+    "dev": "npm link && nodemon -e ts,tsx --exec npm run build --ignore ./hdg",
+    "build": "tsc && npx tsc-alias && npm run copy",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install",
-    "copy": "copyfiles -u 1 ./src/styles/*.css hdg/"
+    "copy": "copyfiles -a ./styles/*.css ./hdg/"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -25,7 +25,6 @@
     "@lexical/react": "^0.16.1",
     "@lexical/utils": "^0.16.1",
     "bootstrap": "^5.3.3",
-    "copyfiles": "^2.4.1",
     "lexical": "^0.16.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -33,6 +32,7 @@
     "tslib": "^2.6.3"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "@types/node": "^20.14.11",
     "nodemon": "^3.1.4",
     "tsc-alias": "~1.8.10",
