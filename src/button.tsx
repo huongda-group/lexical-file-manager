@@ -8,7 +8,10 @@ export type ButtonProps = React.PropsWithChildren<{
   editor: LexicalEditor;
   files: File[];
   onClose?: () => void;
-  onInsert?: (f: File) => void;
+  onInsert?: (f: File | File[]) => void;
+  onDelete?: (f: File) => void;
+  multiple?: boolean;
+  title?: string;
 }>;
 
 export default class ButtonComponent extends React.Component<
@@ -37,23 +40,43 @@ export default class ButtonComponent extends React.Component<
   render() {
     return (
       <>
-        <PanelComponent
-          files={this.props.files}
-          onInsert={(f) => {
-            if (this.props.onInsert) {
-              this.props.onInsert(f);
-            } else {
-              this.props.editor.dispatchCommand(INSERT_FILE_COMMAND, {
-                ...f,
-              });
-            }
-            this.handleClose();
-          }}
-          onClose={() => {
-            this.handleClose();
-          }}
-          show={this.state.show}
-        />
+        {this.state.show && (
+          <PanelComponent
+            title={this.props.title}
+            files={this.props.files.map((item, index) => ({
+              ...item,
+              index,
+            }))}
+            multiple={this.props.multiple}
+            onInsert={(f) => {
+              if (this.props.onInsert) {
+                this.props.onInsert(f);
+              } else {
+                console.log(f, 'f');
+                if (this.props.multiple && Array.isArray(f)) {
+                  f.map((item) => {
+                    this.props.editor.dispatchCommand(INSERT_FILE_COMMAND, {
+                      ...item,
+                    });
+                  });
+                }
+                if (!this.props.multiple) {
+                  {
+                    this.props.editor.dispatchCommand(INSERT_FILE_COMMAND, {
+                      ...(f as File),
+                    });
+                  }
+                }
+              }
+              this.handleClose();
+            }}
+            onClose={() => {
+              this.handleClose();
+            }}
+            onDelete={this.props.onDelete}
+            show={this.state.show}
+          />
+        )}
         <div
           onClick={() => {
             this.setState({

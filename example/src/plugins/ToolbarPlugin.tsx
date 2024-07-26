@@ -185,6 +185,7 @@ export default function ToolbarPlugin() {
         </button>
         <Divider />
         <FileManager
+          title="Simple File Manager"
           editor={editor}
           files={[
             {
@@ -215,10 +216,49 @@ export default function ToolbarPlugin() {
               size: '150x150',
             },
           ]}
-          aria-label="File Manager"
+          aria-label="File Manager Simple"
         >
           <button className="toolbar-item" aria-label="File Manager">
             <i className="format file-manager" />
+          </button>
+        </FileManager>
+        <FileManager
+          title="Multiple Files Manager"
+          editor={editor}
+          files={[
+            {
+              id: '1',
+              name: 'Image 1',
+              url: 'https://placehold.co/600x400/orange/white',
+              size: '150x150',
+              thumbnail: 'https://placehold.co/600x400/orange/white',
+            },
+            {
+              id: '2',
+              name: 'Image 2',
+              url: 'https://placehold.co/600x400/black/white',
+              size: '150x150',
+              thumbnail: 'https://placehold.co/600x400/black/white',
+            },
+            {
+              id: '3',
+              name: 'Image 3',
+              url: 'https://placehold.co/600x400/green/white',
+              size: '150x150',
+              thumbnail: 'https://placehold.co/600x400/green/white',
+            },
+            {
+              id: '4',
+              name: 'Image 4',
+              url: 'https://placehold.co/600x400/green/white',
+              size: '150x150',
+            },
+          ]}
+          aria-label="File Manager Multiple"
+          multiple
+        >
+          <button className="toolbar-item" aria-label="File Manager">
+            <i className="format files-manager" />
           </button>
         </FileManager>
       </div>

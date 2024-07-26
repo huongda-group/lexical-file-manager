@@ -55,7 +55,7 @@ export default class Node extends DecoratorNode<JSX.Element> {
 
   decorate(): JSX.Element {
     return (
-      <a href={this.__url} target="_blank">
+      <a href={this.__url} target="_blank" className="me-1">
         {this.__name}
       </a>
     );

@@ -441,6 +441,10 @@ i.file-manager {
   background-image: url(icons/file-manager.svg);
 }
 
+i.files-manager {
+  background: url(icons/files-manager.png) center center no-repeat;
+}
+
 i.center-align {
   background-image: url(icons/text-center.svg);
 }

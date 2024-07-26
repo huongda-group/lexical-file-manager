@@ -2,18 +2,17 @@ p {
 	margin: 0;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
 /* Panel css */
 .panel {
 	width:90vw;
 	height: 90vh;
 	margin: 2.2vw auto;
   overflow: hidden;
-}
-.panel .file .remove-file {
-  display: none;
-}
-.panel .file:hover .remove-file {
-  display: block;
 }
 .panel .file .file-icon{
   width: 2rem;
@@ -22,9 +21,10 @@ p {
 .panel .file p {
   margin-top: .5rem;
 }
-.panel .file-selected svg {
+.panel .file-selected .file-icon {
   width: 8rem;
   height: 8rem;
+  background-size: cover !important;
 }
 .panel .file-selected p {
   font-size: 1.15em;
