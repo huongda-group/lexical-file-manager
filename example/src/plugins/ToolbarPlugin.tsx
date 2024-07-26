@@ -215,7 +215,7 @@ export default function ToolbarPlugin() {
               url: 'https://placehold.co/600x400/green/white',
               size: '150x150',
             },
-          ]}
+          ].map((item, index) => ({ ...item, index }))}
           aria-label="File Manager Simple"
         >
           <button className="toolbar-item" aria-label="File Manager">
@@ -253,7 +253,7 @@ export default function ToolbarPlugin() {
               url: 'https://placehold.co/600x400/green/white',
               size: '150x150',
             },
-          ]}
+          ].map((item, index) => ({ ...item, index }))}
           aria-label="File Manager Multiple"
           multiple
         >

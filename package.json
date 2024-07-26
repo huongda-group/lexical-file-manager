@@ -14,8 +14,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npm link && nodemon -e ts,tsx --exec npm run build --ignore ./hdg",
-    "build": "tsc && npx tsc-alias && npm run copy",
+    "dev": "npm link && nodemon -e ts,tsx --exec npm run build:dev --ignore ./hdg",
+    "build:dev": "tsc && npx tsc-alias",
+    "build:prod": "tsc && npx tsc-alias && npm run copy",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install",
     "copy": "copyfiles -a ./styles/*.css ./hdg/"
   },

@@ -217,7 +217,10 @@ export default class PanelComponent extends React.Component<
                             <div
                               className="rounded file-icon"
                               style={{
+                                width: '100px',
+                                height: '100px',
                                 background: `url(${this.state.selected.thumbnail}) center center no-repeat`,
+                                backgroundSize: 'cover',
                               }}
                             ></div>
                           ) : (
