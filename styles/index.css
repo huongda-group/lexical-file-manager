@@ -1,0 +1,37 @@
+p {
+	margin: 0;
+}
+
+/* Panel css */
+.panel {
+	width:90vw;
+	height: 90vh;
+	margin: 2.2vw auto;
+  overflow: hidden;
+}
+.panel .file .remove-file {
+  display: none;
+}
+.panel .file:hover .remove-file {
+  display: block;
+}
+.panel .file .file-icon{
+  width: 2rem;
+  height: 2rem;
+}
+.panel .file p {
+  margin-top: .5rem;
+}
+.panel .file-selected svg {
+  width: 8rem;
+  height: 8rem;
+}
+.panel .file-selected p {
+  font-size: 1.15em;
+}
+@media screen and (max-width: 768px) {
+  .panel .border-start {
+    border: 0 !important; 
+  }
+}
+/* Panel css */
