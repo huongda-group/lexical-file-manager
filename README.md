@@ -83,43 +83,51 @@ Add Button to Toolbar:
 import { FileManager } from '@huongda-group/lexical-file-manager';
 ````
 ```jsx
-<FileManager editor={editor} files={[
-{
-  id: '1',
-  name: 'Image 1',
-  url: 'https://via.placeholder.com/150',
-  size: '150x150',
-  thumbnail: 'https://via.placeholder.com/50'
-},
-{
-  id: '2',
-  name: 'Image 2',
-  url: 'https://via.placeholder.com/150',
-  size: '150x150',
-  thumbnail: 'https://via.placeholder.com/50'
-},
-{
-  id: '3',
-  name: 'Image 3',
-  url: 'https://via.placeholder.com/150',
-  size: '150x150',
-  thumbnail: 'https://via.placeholder.com/50'
-}
-]} aria-label="File Manager">
-<button
-  className="toolbar-item"
-  aria-label="File Manager"
+<FileManager
+  title="Multiple Files Manager"
+  editor={editor}
+  files={[
+    {
+      id: '1',
+      name: 'Image 1',
+      url: 'https://placehold.co/600x400/orange/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/orange/white',
+    },
+    {
+      id: '2',
+      name: 'Image 2',
+      url: 'https://placehold.co/600x400/black/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/black/white',
+    },
+    {
+      id: '3',
+      name: 'Image 3',
+      url: 'https://placehold.co/600x400/green/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/green/white',
+    },
+    {
+      id: '4',
+      name: 'Image 4',
+      url: 'https://placehold.co/600x400/green/white',
+      size: '150x150',
+    },
+  ].map((item, index) => ({ ...item, index }))}
+  aria-label="File Manager Multiple"
 >
-  <i className="format file-manager" />
-</button>
+  <button className="toolbar-item" aria-label="File Manager">
+    Upload
+  </button>
 </FileManager>
 ```
 ### Props
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
+| Name     |      Type     |  Default value                                |  Description                            |
+|----------|:-------------:|----------------------------------------------:|----------------------------------------:|
+| editor   | LexicalEditor | const [editor] = useLexicalComposerContext(); | Editor from useLexicalComposerContext() |
+| col 2 is |    centered   |   $12                                         | $12                                     |
+| col 3 is | right-aligned |    $1                                         | $1                                      |
 
 ***
 ## License
