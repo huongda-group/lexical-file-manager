@@ -124,7 +124,7 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 ```
 ### Props
 | Name     |      Type     |  Default value                                |  Description                            |
-|----------|:-------------:|----------------------------------------------:|----------------------------------------:|
+|:---------:|:------------:|:---------------------------------------------:|:---------------------------------------:|
 | editor   | LexicalEditor | const [editor] = useLexicalComposerContext(); | Editor from useLexicalComposerContext() |
 | col 2 is |    centered   |   $12                                         | $12                                     |
 | col 3 is | right-aligned |    $1                                         | $1                                      |
