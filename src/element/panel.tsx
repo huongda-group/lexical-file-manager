@@ -150,69 +150,70 @@ export default class PanelComponent extends React.Component<
                     <>
                       <div className="d-flex flex-column">
                         <div className="file-selected d-flex flex-column justify-content-center align-items-center">
-                          {Array.isArray(this.state.selectedFile) && (
-                            <div className="d-flex w-100 align-items-baseline">
-                              <Button
-                                variant="primary"
-                                className="me-2"
-                                disabled={
-                                  this.state.selectedFile?.indexOf(
-                                    this.state.selected
-                                  ) === 0
-                                }
-                                onClick={() => {
-                                  if (
-                                    Array.isArray(this.state.selectedFile) &&
-                                    this.state.selected
-                                  ) {
-                                    this.setState({
-                                      selected:
-                                        this.state.selectedFile?.[
-                                          this.state.selectedFile?.indexOf(
-                                            this.state.selected
-                                          ) - 1
-                                        ],
-                                    });
+                          {this.props.multiple &&
+                            Array.isArray(this.state.selectedFile) && (
+                              <div className="d-flex w-100 align-items-baseline">
+                                <Button
+                                  variant="primary"
+                                  className="me-2"
+                                  disabled={
+                                    this.state.selectedFile?.indexOf(
+                                      this.state.selected
+                                    ) === 0
                                   }
-                                }}
-                              >
-                                <ChevronLeftIcon />
-                              </Button>
-                              <Button
-                                variant="primary"
-                                className="me-2"
-                                disabled={
-                                  this.state.selectedFile?.indexOf(
-                                    this.state.selected
-                                  ) ===
-                                  this.state.selectedFile.length - 1
-                                }
-                                onClick={() => {
-                                  if (
-                                    Array.isArray(this.state.selectedFile) &&
-                                    this.state.selected
-                                  ) {
-                                    this.setState({
-                                      selected:
-                                        this.state.selectedFile?.[
-                                          this.state.selectedFile?.indexOf(
-                                            this.state.selected
-                                          ) + 1
-                                        ],
-                                    });
+                                  onClick={() => {
+                                    if (
+                                      Array.isArray(this.state.selectedFile) &&
+                                      this.state.selected
+                                    ) {
+                                      this.setState({
+                                        selected:
+                                          this.state.selectedFile?.[
+                                            this.state.selectedFile?.indexOf(
+                                              this.state.selected
+                                            ) - 1
+                                          ],
+                                      });
+                                    }
+                                  }}
+                                >
+                                  <ChevronLeftIcon />
+                                </Button>
+                                <Button
+                                  variant="primary"
+                                  className="me-2"
+                                  disabled={
+                                    this.state.selectedFile?.indexOf(
+                                      this.state.selected
+                                    ) ===
+                                    this.state.selectedFile.length - 1
                                   }
-                                }}
-                              >
-                                <ChevronRightIcon />
-                              </Button>
-                              <p className="text-start">
-                                {this.state.selectedFile.indexOf(
-                                  this.state.selected
-                                ) + 1}{' '}
-                                / {this.state.selectedFile.length} files
-                              </p>
-                            </div>
-                          )}
+                                  onClick={() => {
+                                    if (
+                                      Array.isArray(this.state.selectedFile) &&
+                                      this.state.selected
+                                    ) {
+                                      this.setState({
+                                        selected:
+                                          this.state.selectedFile?.[
+                                            this.state.selectedFile?.indexOf(
+                                              this.state.selected
+                                            ) + 1
+                                          ],
+                                      });
+                                    }
+                                  }}
+                                >
+                                  <ChevronRightIcon />
+                                </Button>
+                                <p className="text-start">
+                                  {this.state.selectedFile.indexOf(
+                                    this.state.selected
+                                  ) + 1}{' '}
+                                  / {this.state.selectedFile.length} files
+                                </p>
+                              </div>
+                            )}
                           {this.state.selected.thumbnail ? (
                             <div
                               className="rounded file-icon"
