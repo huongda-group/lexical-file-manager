@@ -24,6 +24,7 @@ See full [example](https://github.com/huongda-group/lexical-file-manager/tree/ma
 - [x] Delete file.
 - [x] Loading status.
 - [ ] View file text.
+- [ ] Multiple language.
 - [ ] View file audio.
 - [ ] View file image
 - [ ] View file video
