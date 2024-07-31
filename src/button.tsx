@@ -1,17 +1,23 @@
 import React from 'react';
 import { LexicalEditor } from 'lexical';
 import PanelComponent from './element/panel';
-import { File } from './element';
+import { FileItem } from './element';
 import { INSERT_FILE_COMMAND } from 'plugin';
+
+export type ButtonUpload = {
+  multiple: boolean;
+  onUpload: (f: File | FileList) => void;
+};
 
 export type ButtonProps = React.PropsWithChildren<{
   editor: LexicalEditor;
-  files: File[];
+  files: FileItem[];
   onClose?: () => void;
-  onInsert?: (f: File | File[]) => void;
-  onDelete?: (f: File) => void;
+  onInsert?: (f: FileItem | FileItem[]) => void;
+  onDelete?: (f: FileItem) => void;
   multiple?: boolean;
   title?: string;
+  upload: ButtonUpload;
 }>;
 
 export default class ButtonComponent extends React.Component<
@@ -48,6 +54,7 @@ export default class ButtonComponent extends React.Component<
               index,
             }))}
             multiple={this.props.multiple}
+            upload={this.props.upload}
             onInsert={(f) => {
               if (this.props.onInsert) {
                 this.props.onInsert(f);
@@ -63,7 +70,7 @@ export default class ButtonComponent extends React.Component<
                 if (!this.props.multiple) {
                   {
                     this.props.editor.dispatchCommand(INSERT_FILE_COMMAND, {
-                      ...(f as File),
+                      ...(f as FileItem),
                     });
                   }
                 }

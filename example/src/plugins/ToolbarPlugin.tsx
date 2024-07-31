@@ -187,6 +187,12 @@ export default function ToolbarPlugin() {
         <FileManager
           title="Simple File Manager"
           editor={editor}
+          upload={{
+            multiple: true,
+            onUpload: (f) => {
+              console.log(f, 'f');
+            },
+          }}
           files={[
             {
               id: '1',
@@ -212,7 +218,7 @@ export default function ToolbarPlugin() {
             {
               id: '4',
               name: 'Image 4',
-              url: 'https://placehold.co/600x400/green/white',
+              url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
               size: '150x150',
             },
           ].map((item, index) => ({ ...item, index }))}
@@ -225,6 +231,12 @@ export default function ToolbarPlugin() {
         <FileManager
           title="Multiple Files Manager"
           editor={editor}
+          upload={{
+            multiple: false,
+            onUpload: (f) => {
+              console.log(f, 'f');
+            },
+          }}
           files={[
             {
               id: '1',
@@ -250,7 +262,7 @@ export default function ToolbarPlugin() {
             {
               id: '4',
               name: 'Image 4',
-              url: 'https://placehold.co/600x400/green/white',
+              url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
               size: '150x150',
             },
           ].map((item, index) => ({ ...item, index }))}

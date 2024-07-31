@@ -6,7 +6,7 @@ import {
   NodeKey,
 } from 'lexical';
 import React from 'react';
-import { File } from './element';
+import { FileItem } from './element';
 export default class Node extends DecoratorNode<JSX.Element> {
   __id: string;
   __name: string;
@@ -62,7 +62,7 @@ export default class Node extends DecoratorNode<JSX.Element> {
   }
 }
 
-export function $createNode(file: File): Node {
+export function $createNode(file: FileItem): Node {
   return $applyNodeReplacement(
     new Node(file.id, file.name, file.url, file.size, file.thumbnail, file.key)
   );

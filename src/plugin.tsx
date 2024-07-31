@@ -11,9 +11,9 @@ import {
 } from 'lexical';
 import { useEffect } from 'react';
 import Node, { $createNode } from './node';
-import { File } from './element';
+import { FileItem } from './element';
 
-export const INSERT_FILE_COMMAND: LexicalCommand<File> = createCommand(
+export const INSERT_FILE_COMMAND: LexicalCommand<FileItem> = createCommand(
   'INSERT_FILE_COMMAND'
 );
 
@@ -27,7 +27,7 @@ export default function Plugin(): JSX.Element {
     }
 
     return mergeRegister(
-      editor.registerCommand<File>(
+      editor.registerCommand<FileItem>(
         INSERT_FILE_COMMAND,
         (payload) => {
           const imageNode = $createNode(payload);

@@ -1,7 +1,8 @@
+import { ButtonUpload } from 'button';
 import { NodeKey } from 'lexical';
 import React from 'react';
 
-export interface File {
+export interface FileItem {
   id: string;
   name: string;
   url: string;
@@ -14,27 +15,29 @@ export interface File {
 export type PanelProps = React.PropsWithChildren<{
   title?: string;
   show: boolean;
-  files: File[];
+  files: FileItem[];
   multiple?: boolean;
+  upload: ButtonUpload;
   onClose?: () => void;
-  onDelete?: (file: File) => void;
-  onInsert?: (file: File | File[]) => void;
+  onDelete?: (file: FileItem) => void;
+  onInsert?: (file: FileItem | FileItem[]) => void;
 }>;
 
 export interface PanelState {
-  files: File[];
-  selected: File | null;
-  selectedFile: File | File[] | null;
+  files: FileItem[];
+  selected: FileItem | null;
+  selectedFile: FileItem | FileItem[] | null;
   showDeleteSelected: boolean;
   helperText: string;
+  dragging: boolean;
 }
 
 export type FileProps = React.PropsWithChildren<{
-  file: File;
-  selected: File | null;
-  selectedFile: File | File[] | null;
-  onSelect: (f: File | null) => void;
-  onDelete?: (f: File) => void;
+  file: FileItem;
+  selected: FileItem | null;
+  selectedFile: FileItem | FileItem[] | null;
+  onSelect: (f: FileItem | null) => void;
+  onDelete?: (f: FileItem) => void;
 }>;
 
 export interface FileState {
