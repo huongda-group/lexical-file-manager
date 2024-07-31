@@ -5,3 +5,5 @@ src/
 tsconfig.json
 example/
 preview/
+.idea/
+.prettierrc

@@ -3,14 +3,10 @@
   "description": "Plugin file manager for Lexical",
   "author": "Huong Da Group",
   "license": "ISC",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nice-buff/lib.git"
+    "url": "git+https://github.com/huongda-group/lexical-file-manager.git"
   },
-  "private": false,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
@@ -18,7 +14,8 @@
     "build:dev": "tsc && npx tsc-alias",
     "build:prod": "tsc && npx tsc-alias && npm run copy",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install",
-    "copy": "copyfiles -a ./styles/*.css ./hdg/"
+    "copy": "copyfiles -a ./styles/*.css ./hdg/",
+    "npm-push": "npm publish --access public"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -43,5 +40,9 @@
     "singleQuote": true
   },
   "main": "./hdg/index.js",
-  "types": "./hdg/index.d.ts"
+  "types": "./hdg/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
