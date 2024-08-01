@@ -10,3 +10,4 @@ export const FileManager = ButtonComponent;
 export const FileManagerPlugin = Plugin;
 export const FileManagerNode = Node;
 export const INSERT_FILE_COMMAND = COMMAND;
+export * from './element';

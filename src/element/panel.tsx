@@ -11,7 +11,6 @@ import {
 } from 'react-bootstrap-icons';
 import FileComponent from './file';
 import ConfirmButton from 'components/button/ConfirmButton';
-import { isEqual } from 'lodash';
 
 export default class PanelComponent extends React.Component<
   PanelProps,

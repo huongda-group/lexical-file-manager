@@ -40,13 +40,14 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [files, setFiles] = useState<FileItem>([
+  const [files, setFiles] = useState<FileItem[]>([
     {
       id: '1',
       name: 'Image 1',
       url: 'https://placehold.co/600x400/orange/white',
       size: '150x150',
       thumbnail: 'https://placehold.co/600x400/orange/white',
+      index: 0,
     },
     {
       id: '2',
@@ -54,6 +55,7 @@ export default function ToolbarPlugin() {
       url: 'https://placehold.co/600x400/black/white',
       size: '150x150',
       thumbnail: 'https://placehold.co/600x400/black/white',
+      index: 1,
     },
     {
       id: '3',
@@ -61,12 +63,14 @@ export default function ToolbarPlugin() {
       url: 'https://placehold.co/600x400/green/white',
       size: '150x150',
       thumbnail: 'https://placehold.co/600x400/green/white',
+      index: 2,
     },
     {
       id: '4',
       name: 'Image 4',
       url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
       size: '150x150',
+      index: 3,
     },
   ]);
   // const [openFileManager, setOpenFileManager] = useState(false);
@@ -274,6 +278,7 @@ export default function ToolbarPlugin() {
                   name: 'Image 5',
                   url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
                   size: '150x150',
+                  index: 4,
                 })
               );
             },
