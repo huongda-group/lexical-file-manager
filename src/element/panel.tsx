@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap-icons';
 import FileComponent from './file';
 import ConfirmButton from 'components/button/ConfirmButton';
-import { debug } from 'console';
+import { isEqual } from 'lodash';
 
 export default class PanelComponent extends React.Component<
   PanelProps,
@@ -37,6 +37,11 @@ export default class PanelComponent extends React.Component<
   }
 
   componentDidUpdate(prevProps: PanelProps, prevState: PanelState) {
+    if (!isEqual(prevProps.files, this.props.files)) {
+      this.setState({
+        files: this.props.files,
+      });
+    }
     if (
       prevState.selected !== this.state.selected ||
       prevState.selected?.id !== this.state.selected?.id

@@ -39,6 +39,35 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
+  const [files, setFiles] = useState([
+    {
+      id: '1',
+      name: 'Image 1',
+      url: 'https://placehold.co/600x400/orange/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/orange/white',
+    },
+    {
+      id: '2',
+      name: 'Image 2',
+      url: 'https://placehold.co/600x400/black/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/black/white',
+    },
+    {
+      id: '3',
+      name: 'Image 3',
+      url: 'https://placehold.co/600x400/green/white',
+      size: '150x150',
+      thumbnail: 'https://placehold.co/600x400/green/white',
+    },
+    {
+      id: '4',
+      name: 'Image 4',
+      url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
+      size: '150x150',
+    },
+  ]);
   // const [openFileManager, setOpenFileManager] = useState(false);
 
   const $updateToolbar = useCallback(() => {
@@ -235,37 +264,17 @@ export default function ToolbarPlugin() {
             multiple: false,
             onUpload: (f) => {
               console.log(f, 'f');
+              setFiles(
+                files.concat({
+                  id: '5',
+                  name: 'Image 5',
+                  url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
+                  size: '150x150',
+                })
+              );
             },
           }}
-          files={[
-            {
-              id: '1',
-              name: 'Image 1',
-              url: 'https://placehold.co/600x400/orange/white',
-              size: '150x150',
-              thumbnail: 'https://placehold.co/600x400/orange/white',
-            },
-            {
-              id: '2',
-              name: 'Image 2',
-              url: 'https://placehold.co/600x400/black/white',
-              size: '150x150',
-              thumbnail: 'https://placehold.co/600x400/black/white',
-            },
-            {
-              id: '3',
-              name: 'Image 3',
-              url: 'https://placehold.co/600x400/green/white',
-              size: '150x150',
-              thumbnail: 'https://placehold.co/600x400/green/white',
-            },
-            {
-              id: '4',
-              name: 'Image 4',
-              url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
-              size: '150x150',
-            },
-          ].map((item, index) => ({ ...item, index }))}
+          files={files}
           aria-label="File Manager Multiple"
           multiple
         >

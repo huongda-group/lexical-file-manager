@@ -128,7 +128,7 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 |:--------:|:-------------------------------------:|:----------------------------------------------|:----------------------------------------------|
 | editor   | LexicalEditor                         | const [editor] = useLexicalComposerContext(); | Editor from useLexicalComposerContext()       |
 | files    | File                                  | []                                            | List of files to add                          |
-| upload   | {multiple: boolean; onUpload: (f: File/File[]) => void}                  | -                                            | List of files to add                          |
+| upload   | {multiple: boolean; onUpload: (f: File/File[]) => void}                  | -                                            | callback when upload                          |
 | onClose  | () => void - optional                 | -                                             | callback when close modal                     |
 | onInsert | (f: File/File[]) => void - optional   | -                                             | callback when insert file/files               |
 | onDelete | (f: File) => void - optional          | -                                             | callback when delete file                     |

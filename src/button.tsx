@@ -11,7 +11,7 @@ export type ButtonUpload = {
 
 export type ButtonProps = React.PropsWithChildren<{
   editor: LexicalEditor;
-  files: FileItem[];
+  files: Omit<FileItem, 'index'>[];
   onClose?: () => void;
   onInsert?: (f: FileItem | FileItem[]) => void;
   onDelete?: (f: FileItem) => void;
