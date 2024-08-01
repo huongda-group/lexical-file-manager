@@ -17,6 +17,12 @@ export default class PanelComponent extends React.Component<
   PanelProps,
   PanelState
 > {
+  initHelperText: { variant: 'info' | 'error'; message: string } = {
+    variant: 'info',
+    message: `Drop file${
+      this.props.upload?.multiple ? '(s)' : ''
+    } to panel to upload`,
+  };
   constructor(props: PanelProps) {
     super(props);
 
@@ -25,7 +31,7 @@ export default class PanelComponent extends React.Component<
       selected: null,
       selectedFile: this.props.multiple ? [] : null,
       showDeleteSelected: false,
-      helperText: '',
+      helperText: this.initHelperText,
       dragging: false,
     };
   }
@@ -146,6 +152,7 @@ export default class PanelComponent extends React.Component<
                   event.preventDefault();
                   this.setState({
                     dragging: false,
+                    helperText: this.initHelperText,
                   });
                   if (this.props.upload && this.props.upload.onUpload) {
                     if (event.dataTransfer.files) {
@@ -156,6 +163,13 @@ export default class PanelComponent extends React.Component<
                           this.props.upload.onUpload(
                             event.dataTransfer.files[0] as File | FileList
                           );
+                        } else {
+                          this.setState({
+                            helperText: {
+                              variant: 'error',
+                              message: 'Allow upload single file',
+                            },
+                          });
                         }
                       }
                     }
@@ -361,6 +375,7 @@ export default class PanelComponent extends React.Component<
                   className={`h-100 d-flex justify-content-center align-items-center ${
                     this.state.dragging ? 'show-on-drag' : 'hide-on-drag'
                   }`}
+                  style={{ position: 'relative' }}
                 >
                   <p
                     className="text-center font-weight-bold"
@@ -369,13 +384,37 @@ export default class PanelComponent extends React.Component<
                     Drop {this.props.upload.multiple ? 'files' : 'file'} to
                     upload
                   </p>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      this.setState({
+                        dragging: false,
+                      });
+                    }}
+                    style={{
+                      position: 'absolute',
+                      bottom: '10px',
+                      right: '10px',
+                    }}
+                  >
+                    Cancel
+                  </Button>
                 </Container>
               </Row>
             </Container>
           </Modal.Body>
 
           <Modal.Footer className="justify-content-between">
-            <div className="d-flex">{this.state.helperText}</div>
+            <div
+              className="d-flex"
+              style={{
+                fontStyle: 'italic',
+                color:
+                  this.state.helperText.variant === 'error' ? 'red' : 'unset',
+              }}
+            >
+              {this.state.helperText?.message}
+            </div>
             <div className="d-flex">
               <Button
                 variant="primary"

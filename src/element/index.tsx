@@ -28,7 +28,10 @@ export interface PanelState {
   selected: FileItem | null;
   selectedFile: FileItem | FileItem[] | null;
   showDeleteSelected: boolean;
-  helperText: string;
+  helperText: {
+    variant: 'info' | 'error';
+    message: string;
+  };
   dragging: boolean;
 }
 
