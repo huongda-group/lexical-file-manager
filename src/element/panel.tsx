@@ -27,7 +27,6 @@ export default class PanelComponent extends React.Component<
     super(props);
 
     this.state = {
-      files: props.files,
       selected: null,
       selectedFile: this.props.multiple ? [] : null,
       showDeleteSelected: false,
@@ -37,11 +36,6 @@ export default class PanelComponent extends React.Component<
   }
 
   componentDidUpdate(prevProps: PanelProps, prevState: PanelState) {
-    if (!isEqual(prevProps.files, this.props.files)) {
-      this.setState({
-        files: this.props.files,
-      });
-    }
     if (
       prevState.selected !== this.state.selected ||
       prevState.selected?.id !== this.state.selected?.id
@@ -189,7 +183,7 @@ export default class PanelComponent extends React.Component<
                 >
                   <Container fluid className={`overflow-hidden py-3`}>
                     <Row className="gx-3">
-                      {this.state.files.map((item: FileItem) => (
+                      {this.props.files.map((item: FileItem) => (
                         <FileComponent
                           key={item.id}
                           file={item}
@@ -200,14 +194,14 @@ export default class PanelComponent extends React.Component<
                               this.props.onDelete(file);
                             }
                             this.setState({
-                              files: this.state.files.filter(
-                                (e) => e.id !== file.id
-                              ),
                               selected:
                                 file.id === this.state.selected?.id
                                   ? null
                                   : this.state.selected,
                             });
+                            this.props.onChange(
+                              this.props.files.filter((e) => e.id !== file.id)
+                            );
                           }}
                           onSelect={(f) => {
                             this.setState({
@@ -340,11 +334,13 @@ export default class PanelComponent extends React.Component<
                                 this.props.onDelete(this.state.selected);
                               }
                               this.setState({
-                                files: this.state.files.filter(
-                                  (e) => e.id !== this.state.selected?.id
-                                ),
                                 selected: null,
                               });
+                              this.props.onChange(
+                                this.props.files.filter(
+                                  (e) => e.id !== this.state.selected?.id
+                                )
+                              );
                             },
                           }}
                           className="col-2 me-2 me-md-0 me-lg-2 mt-2 p-0"

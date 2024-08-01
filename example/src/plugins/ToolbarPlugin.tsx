@@ -8,6 +8,7 @@
 import {
   FileManager,
   INSERT_FILE_COMMAND,
+  FileItem,
 } from '@huongda-group/lexical-file-manager';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
@@ -39,7 +40,7 @@ export default function ToolbarPlugin() {
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [files, setFiles] = useState([
+  const [files, setFiles] = useState<FileItem>([
     {
       id: '1',
       name: 'Image 1',
@@ -250,7 +251,10 @@ export default function ToolbarPlugin() {
               url: 'https://file-examples.com/wp-content/storage/2017/02/file-sample_100kB.doc',
               size: '150x150',
             },
-          ].map((item, index) => ({ ...item, index }))}
+          ]}
+          onChange={(f) => {
+            console.log(f, 'f');
+          }}
           aria-label="File Manager Simple"
         >
           <button className="toolbar-item" aria-label="File Manager">
@@ -275,6 +279,9 @@ export default function ToolbarPlugin() {
             },
           }}
           files={files}
+          onChange={(f) => {
+            setFiles(f);
+          }}
           aria-label="File Manager Multiple"
           multiple
         >

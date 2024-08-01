@@ -12,6 +12,7 @@ export type ButtonUpload = {
 export type ButtonProps = React.PropsWithChildren<{
   editor: LexicalEditor;
   files: Omit<FileItem, 'index'>[];
+  onChange: (f: FileItem[]) => void;
   onClose?: () => void;
   onInsert?: (f: FileItem | FileItem[]) => void;
   onDelete?: (f: FileItem) => void;
@@ -53,6 +54,7 @@ export default class ButtonComponent extends React.Component<
               ...item,
               index,
             }))}
+            onChange={this.props.onChange}
             multiple={this.props.multiple}
             upload={this.props.upload}
             onInsert={(f) => {
