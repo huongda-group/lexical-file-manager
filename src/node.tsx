@@ -1,12 +1,11 @@
 import {
   $applyNodeReplacement,
   DecoratorNode,
-  EditorConfig,
-  LexicalEditor,
   NodeKey,
 } from 'lexical';
 import React from 'react';
 import { FileItem } from './element';
+
 export default class Node extends DecoratorNode<JSX.Element> {
   __id: string;
   __name: string;
