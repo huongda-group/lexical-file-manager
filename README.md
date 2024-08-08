@@ -14,6 +14,8 @@ This package provides a set of components and hooks for Lexical that allow for m
 ***
 
 See full [example](https://github.com/huongda-group/lexical-file-manager/tree/main/example).
+<br />
+[Demo](https://lexical-file-manager.huongda.dev)
 
 ![Hương Đá Group Lexical file manager](https://github.com/huongda-group/lexical-file-manager/blob/main/preview/1.png?raw=true "Hương Đá Group Lexical file manager")
 
