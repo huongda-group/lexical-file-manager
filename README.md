@@ -124,16 +124,16 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 </FileManager>
 ```
 ### Props
-| Name     |      Type                             |  Default value                                |  Description                                  |
-|:--------:|:-------------------------------------:|:----------------------------------------------|:----------------------------------------------|
-| editor   | LexicalEditor                         | const [editor] = useLexicalComposerContext(); | Editor from useLexicalComposerContext()       |
-| files    | File                                  | []                                            | List of files to add                          |
-| upload   | {multiple: boolean; onUpload: (f: File/File[]) => void}                  | -                                            | callback when upload                          |
-| onClose  | () => void - optional                 | -                                             | callback when close modal                     |
-| onInsert | (f: File/File[]) => void - optional   | -                                             | callback when insert file/files               |
-| onDelete | (f: File) => void - optional          | -                                             | callback when delete file                     |
-| multiple | boolean - optional                    | false                                         | config upload simple or multiple files        |
-| title    | string - optional                     | -                                             | title of modal                                |
+| Name     |  Required   |                          Type                           |  Default value                                |  Description                                  |
+|:--------:|:-----------:|:-------------------------------------------------------:|:----------------------------------------------|:----------------------------------------------|
+| editor   | ```true```  |                      LexicalEditor                      | const [editor] = useLexicalComposerContext(); | Editor from useLexicalComposerContext()       |
+| files    | ```true```  |                          File                           | []                                            | List of files to add                          |
+| upload   | ```true```  | {multiple: boolean; onUpload: (f: File/File[]) => void} | -                                            | callback when upload                          |
+| onClose  | ```false``` |                  () => void - optional                  |                            -                             | callback when close modal                     |
+| onInsert | ```false``` |           (f: File/File[]) => void - optional           |                            -                            | callback when insert file/files               |
+| onDelete | ```false``` |              (f: File) => void - optional               |                            -                            | callback when delete file                     |
+| multiple | ```false``` |                   boolean - optional                    |                          false                          | config upload simple or multiple files        |
+| title    | ```false``` |                    string - optional                    |                            -                            | title of modal                                |
 
 ***
 ## License
