@@ -18,7 +18,7 @@ export type ButtonProps = React.PropsWithChildren<{
   onDelete?: (f: FileItem) => void;
   multiple?: boolean;
   title?: string;
-  upload: ButtonUpload;
+  onUpload: ButtonUpload;
 }>;
 
 export default class ButtonComponent extends React.Component<
@@ -56,7 +56,7 @@ export default class ButtonComponent extends React.Component<
             }))}
             onChange={this.props.onChange}
             multiple={this.props.multiple}
-            upload={this.props.upload}
+            onUpload={this.props.onUpload}
             onInsert={(f) => {
               if (this.props.onInsert) {
                 this.props.onInsert(f);

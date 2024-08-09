@@ -221,7 +221,7 @@ export default function ToolbarPlugin() {
         <FileManager
           title="Simple File Manager"
           editor={editor}
-          upload={{
+          onUpload={{
             multiple: true,
             onUpload: (f) => {
               console.log(f, 'f');
@@ -268,7 +268,7 @@ export default function ToolbarPlugin() {
         <FileManager
           title="Multiple Files Manager"
           editor={editor}
-          upload={{
+          onUpload={{
             multiple: false,
             onUpload: (f) => {
               console.log(f, 'f');

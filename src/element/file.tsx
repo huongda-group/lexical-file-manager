@@ -5,7 +5,7 @@ import {
 import React from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { FileProps, FileState } from './index';
-import ConfirmButton from 'components/button/ConfirmButton';
+import ConfirmButton from 'components/ConfirmButton';
 
 export default class FileComponent extends React.Component<
   FileProps,

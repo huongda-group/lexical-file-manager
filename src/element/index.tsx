@@ -18,7 +18,7 @@ export type PanelProps = React.PropsWithChildren<{
   files: FileItem[];
   onChange: (f: FileItem[]) => void;
   multiple?: boolean;
-  upload: ButtonUpload;
+  onUpload: ButtonUpload;
   onClose?: () => void;
   onDelete?: (file: FileItem) => void;
   onInsert?: (file: FileItem | FileItem[]) => void;

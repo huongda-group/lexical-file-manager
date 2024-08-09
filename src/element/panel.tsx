@@ -10,7 +10,7 @@ import {
   Download as DownloadIcon,
 } from 'react-bootstrap-icons';
 import FileComponent from './file';
-import ConfirmButton from 'components/button/ConfirmButton';
+import ConfirmButton from 'components/ConfirmButton';
 
 export default class PanelComponent extends React.Component<
   PanelProps,
@@ -19,7 +19,7 @@ export default class PanelComponent extends React.Component<
   initHelperText: { variant: 'info' | 'error'; message: string } = {
     variant: 'info',
     message: `Drop file${
-      this.props.upload?.multiple ? '(s)' : ''
+      this.props.onUpload?.multiple ? '(s)' : ''
     } to panel to upload`,
   };
   constructor(props: PanelProps) {
@@ -107,11 +107,11 @@ export default class PanelComponent extends React.Component<
                           position: 'absolute',
                           width: '100%',
                         }}
-                        multiple={this.props.upload?.multiple ?? false}
+                        multiple={this.props.onUpload?.multiple ?? false}
                         onChange={(e) => {
-                          if (e.target.files && this.props.upload) {
-                            this.props.upload.onUpload(
-                              (this.props.upload.multiple
+                          if (e.target.files && this.props.onUpload) {
+                            this.props.onUpload.onUpload(
+                              (this.props.onUpload.multiple
                                 ? e.target.files
                                 : e.target.files?.[0]) as FileList
                             );
@@ -152,13 +152,13 @@ export default class PanelComponent extends React.Component<
                     dragging: false,
                     helperText: this.initHelperText,
                   });
-                  if (this.props.upload && this.props.upload.onUpload) {
+                  if (this.props.onUpload && this.props.onUpload.onUpload) {
                     if (event.dataTransfer.files) {
-                      if (this.props.upload.multiple) {
-                        this.props.upload.onUpload(event.dataTransfer.files);
+                      if (this.props.onUpload.multiple) {
+                        this.props.onUpload.onUpload(event.dataTransfer.files);
                       } else {
                         if (event.dataTransfer.files.length === 1) {
-                          this.props.upload.onUpload(
+                          this.props.onUpload.onUpload(
                             event.dataTransfer.files[0] as File | FileList
                           );
                         } else {
@@ -381,7 +381,7 @@ export default class PanelComponent extends React.Component<
                     className="text-center font-weight-bold"
                     style={{ fontSize: '22px' }}
                   >
-                    Drop {this.props.upload.multiple ? 'files' : 'file'} to
+                    Drop {this.props.onUpload.multiple ? 'files' : 'file'} to
                     upload
                   </p>
                   <Button
