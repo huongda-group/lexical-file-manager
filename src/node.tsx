@@ -1,8 +1,4 @@
-import {
-  $applyNodeReplacement,
-  DecoratorNode,
-  NodeKey,
-} from 'lexical';
+import { $applyNodeReplacement, DecoratorNode, NodeKey } from 'lexical';
 import React from 'react';
 import { FileItem } from './element';
 
@@ -10,7 +6,7 @@ export default class Node extends DecoratorNode<JSX.Element> {
   __id: string;
   __name: string;
   __url: string;
-  __size?: string;
+  __size?: number;
   __thumbnail?: string;
 
   static getType(): string {
@@ -31,8 +27,7 @@ export default class Node extends DecoratorNode<JSX.Element> {
     id: string,
     name: string,
     url: string,
-    size?: string,
-    thumbnail?: string,
+    size?: number,
     key?: NodeKey
   ) {
     super(key);
@@ -40,7 +35,6 @@ export default class Node extends DecoratorNode<JSX.Element> {
     this.__name = name;
     this.__url = url;
     this.__size = size;
-    this.__thumbnail = thumbnail;
   }
 
   createDOM(): HTMLElement {
@@ -63,6 +57,6 @@ export default class Node extends DecoratorNode<JSX.Element> {
 
 export function $createNode(file: FileItem): Node {
   return $applyNodeReplacement(
-    new Node(file.id, file.name, file.url, file.size, file.thumbnail, file.key)
+    new Node(file.id, file.name, file.url, file.size, file.key)
   );
 }

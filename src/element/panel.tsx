@@ -1,16 +1,16 @@
+import Byte from 'components/Byte';
+import ConfirmButton from 'components/ConfirmButton';
+import IconFile from 'components/IconFile';
+import TitleFile from 'components/TitleFile';
 import React from 'react';
-import { Button, Col, Container, Modal, Row, Stack } from 'react-bootstrap';
-import { FileItem, PanelProps, PanelState } from './index';
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import {
-  Upload as UploadIcon,
-  FileEarmark as FileEarmarkIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
-  Trash as TrashIcon,
-  Download as DownloadIcon,
+  Upload as UploadIcon,
 } from 'react-bootstrap-icons';
 import FileComponent from './file';
-import ConfirmButton from 'components/ConfirmButton';
+import { FileItem, PanelProps, PanelState } from './index';
 
 export default class PanelComponent extends React.Component<
   PanelProps,
@@ -126,7 +126,7 @@ export default class PanelComponent extends React.Component<
           </Modal.Header>
 
           <Modal.Body className="py-0" style={{ position: 'relative' }}>
-            <Container fluid className="h-100">
+            <Container fluid className="h-100" style={{ overflow: 'hidden' }}>
               <Row
                 className="h-100"
                 onDragEnter={(event) => {
@@ -178,9 +178,11 @@ export default class PanelComponent extends React.Component<
                 <Col
                   xs={12}
                   md={8}
-                  className={`${this.state.dragging ? 'hide-on-drag' : ''}`}
+                  className={`h-100 overflow-hidden ${
+                    this.state.dragging ? 'hide-on-drag' : ''
+                  }`}
                 >
-                  <Container fluid className={`overflow-hidden py-3`}>
+                  <Container fluid className={`py-3 h-100 overflow-auto`}>
                     <Row className="gx-3">
                       {this.props.files.map((item: FileItem) => (
                         <FileComponent
@@ -221,7 +223,7 @@ export default class PanelComponent extends React.Component<
                 <Col
                   xs={12}
                   md={4}
-                  className={`border-start py-3 d-flex flex-column justify-content-between ${
+                  className={`h-100 border-start py-3 d-flex flex-column justify-content-between ${
                     this.state.dragging ? 'hide-on-drag' : ''
                   }`}
                 >
@@ -293,22 +295,15 @@ export default class PanelComponent extends React.Component<
                                 </p>
                               </div>
                             )}
-                          {this.state.selected.thumbnail ? (
-                            <div
-                              className="rounded file-icon"
-                              style={{
-                                width: '100px',
-                                height: '100px',
-                                background: `url(${this.state.selected.thumbnail}) center center no-repeat`,
-                                backgroundSize: 'cover',
-                              }}
-                            ></div>
-                          ) : (
-                            <FileEarmarkIcon className="file-icon" />
-                          )}
-                          <p className="text-center">
-                            {this.state.selected.name}
-                          </p>
+                          <IconFile mimetype={this.state.selected.mimetype} />
+
+                          <div className="d-flex flex-column align-items-center position-relative">
+                            <TitleFile
+                              title={this.state.selected.name}
+                              style={{ whiteSpace: 'unset' }}
+                            />
+                            <Byte byte={this.state.selected.size} />
+                          </div>
                         </>
                       )}
                       {!this.state.selected && (

@@ -17,6 +17,7 @@ p {
 .panel .file .file-icon{
   width: 2rem;
   height: 2rem;
+  color: #00000069
 }
 .panel .file p {
   margin-top: .5rem;
@@ -24,15 +25,19 @@ p {
 .panel .file-selected svg.file-icon {
   width: 100px;
   height: 100px;
-  background-size: cover !important;
-}
-.panel .file-selected .file-icon {
-  /* width: 8rem;
-  height: 8rem; */
+  color: #00000069;
   background-size: cover !important;
 }
 .panel .file-selected p {
   font-size: 1.15em;
+}
+.view-icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  right: 5px;
+  padding: 0;
 }
 @media screen and (max-width: 768px) {
   .panel .border-start {

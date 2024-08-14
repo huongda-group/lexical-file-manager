@@ -2,13 +2,39 @@ import { ButtonUpload } from 'button';
 import { NodeKey } from 'lexical';
 import React from 'react';
 
+export type Mimetype =
+  | 'image/jpeg'
+  | 'image/png'
+  | 'image/gif'
+  | 'image/bmp'
+  | 'image/webp'
+  | 'image/tiff'
+  | 'image/svg+xml'
+  | 'audio/mpeg'
+  | 'audio/wav'
+  | 'audio/ogg'
+  | 'audio/mp4'
+  | 'audio/aac'
+  | 'audio/flac'
+  | 'audio/amr'
+  | 'audio/x-ms-wma'
+  | 'video/mp4'
+  | 'video/webm'
+  | 'video/x-msvideo'
+  | 'video/quicktime'
+  | 'video/x-ms-wmv'
+  | 'video/x-flv'
+  | 'video/x-matroska'
+  | 'video/mpeg'
+  | string;
+
 export type FileItem = {
   id: string;
   name: string;
   url: string;
-  size?: string;
-  thumbnail?: string;
+  size: number;
   key?: NodeKey;
+  mimetype: Mimetype;
   index: number;
 };
 

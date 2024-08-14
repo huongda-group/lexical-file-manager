@@ -6,6 +6,7 @@ import React from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { FileProps, FileState } from './index';
 import ConfirmButton from 'components/ConfirmButton';
+import TitleFile from 'components/TitleFile';
 
 export default class FileComponent extends React.Component<
   FileProps,
@@ -97,18 +98,8 @@ export default class FileComponent extends React.Component<
           }}
           className="border rounded"
         >
-          {this.props.file.thumbnail ? (
-            <div
-              className="rounded file-icon"
-              style={{
-                background: `url(${this.props.file.thumbnail}) center center no-repeat`,
-                backgroundSize: 'cover',
-              }}
-            ></div>
-          ) : (
-            <FileEarmarkIcon className="file-icon" />
-          )}
-          <p className="text-center">{this.props.file.name}</p>
+          <FileEarmarkIcon className="file-icon" />
+          <TitleFile title={this.props.file.name} />
         </div>
       </Col>
     );
