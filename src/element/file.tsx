@@ -7,6 +7,7 @@ import { Button, Col, Form } from 'react-bootstrap';
 import { FileProps, FileState } from './index';
 import ConfirmButton from 'components/ConfirmButton';
 import TitleFile from 'components/TitleFile';
+import { Icon } from 'utils';
 
 export default class FileComponent extends React.Component<
   FileProps,
@@ -98,7 +99,7 @@ export default class FileComponent extends React.Component<
           }}
           className="border rounded"
         >
-          <FileEarmarkIcon className="file-icon" />
+          {Icon(this.props.file.mimetype).component}
           <TitleFile title={this.props.file.name} />
         </div>
       </Col>

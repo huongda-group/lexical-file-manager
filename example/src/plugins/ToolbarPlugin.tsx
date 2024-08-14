@@ -42,18 +42,27 @@ export default function ToolbarPlugin() {
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [files, setFiles] = useState<FileItem[]>(
     [
-      1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-      21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
-      39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
-      57, 58, 59, 60,
-    ].map((num) => ({
-      id: num.toString(),
-      name: 'Image ' + (num + 1).toString(),
-      url: 'https://placehold.co/600x400/orange/white',
-      size: 10245 * num,
-      mimetype: 'image/jpeg',
-      index: num,
-    }))
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+      22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+      40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
+      58, 59, 60, 61,
+    ].map((num) => {
+      return {
+        id: num.toString(),
+        name: 'Image ' + (num + 1).toString(),
+        url: 'https://placehold.co/600x400/orange/white',
+        size: 10245 * num,
+        mimetype:
+          num % 4 === 0
+            ? 'image/jpeg'
+            : num % 3 === 0 && num % 2 !== 0
+            ? 'audio/mpeg'
+            : num % 2 === 0
+            ? 'video/mp4'
+            : 'text',
+        index: num,
+      };
+    })
   );
   // const [openFileManager, setOpenFileManager] = useState(false);
 

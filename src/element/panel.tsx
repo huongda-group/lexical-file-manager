@@ -295,7 +295,11 @@ export default class PanelComponent extends React.Component<
                                 </p>
                               </div>
                             )}
-                          <IconFile mimetype={this.state.selected.mimetype} />
+                          <IconFile
+                            mimetype={this.state.selected.mimetype}
+                            title={this.state.selected.name}
+                            url={this.state.selected.url}
+                          />
 
                           <div className="d-flex flex-column align-items-center position-relative">
                             <TitleFile

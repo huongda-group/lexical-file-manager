@@ -32,6 +32,7 @@ p {
   font-size: 1.15em;
 }
 .view-icon {
+  display: none !important;
   position: absolute;
   width: 30px;
   height: 30px;
@@ -39,6 +40,10 @@ p {
   right: 5px;
   padding: 0;
 }
+.panel .file-selected:hover .view-icon {
+  display: flex !important;
+}
+
 @media screen and (max-width: 768px) {
   .panel .border-start {
     border: 0 !important; 
