@@ -141,12 +141,12 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 ### FileItem interface
 | Name     |  Required   |                          Type                           |  Default value                                |  Description                                  |
 |:--------:|:-----------:|:-------------------------------------------------------:|:----------------------------------------------|:----------------------------------------------|
-| id   | ```true```  |                      string                      | - | Identify each item |
+| id   | ```true```  |                      string                      | - | Identify each file |
 | name   | ```true```  |                      string                      | - | Name |
-| url   | ```true```  |                      string                      | - | Url file |
+| url   | ```true```  |                      string                      | - | Url of file |
 | size   | ```true```  |                      number                      | - | Size of file in bytes |
 | mimetype   | ```true```  |                      Mimetype                      | - | Mimetype of file |
-| index   | ```true```  |                      number                      | - | Order of each item |
+| index   | ```true```  |                      number                      | - | Order of file |
 | key   | ```false```  |                      NodeKey                      | - | NodeKey of lexical |
 
 ### Mimetype type
