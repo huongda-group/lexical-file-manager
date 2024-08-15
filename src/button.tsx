@@ -61,7 +61,6 @@ export default class ButtonComponent extends React.Component<
               if (this.props.onInsert) {
                 this.props.onInsert(f);
               } else {
-                console.log(f, 'f');
                 if (this.props.multiple && Array.isArray(f)) {
                   f.map((item) => {
                     this.props.editor.dispatchCommand(INSERT_FILE_COMMAND, {

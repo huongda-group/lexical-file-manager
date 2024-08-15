@@ -27,7 +27,6 @@ export const Icon = (mimetype: Mimetype) => {
     isOther = false;
     type = 'audio';
   }
-  console.log(mimetype, 'console.log(mimetype);');
   if (videoMimeTypeRegex.test(mimetype)) {
     component = <FileEarmarkPlayIcon className="file-icon" />;
     isOther = false;
