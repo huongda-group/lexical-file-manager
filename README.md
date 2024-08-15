@@ -141,8 +141,7 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
 ### FileItem interface
 | Name     |  Required   |                          Type                           |  Default value                                |  Description                                  |
 |:--------:|:-----------:|:-------------------------------------------------------:|:----------------------------------------------|:----------------------------------------------|
-| id   | ```true```  |                      string                      | - | Identify each item
- |
+| id   | ```true```  |                      string                      | - | Identify each item |
 | name   | ```true```  |                      string                      | - | Name |
 | url   | ```true```  |                      string                      | - | Url file |
 | size   | ```true```  |                      number                      | - | Size of file in bytes |
