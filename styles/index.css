@@ -40,6 +40,9 @@ p {
   right: 5px;
   padding: 0;
 }
+.modal-preview {
+  background: #0000001f;
+}
 .panel .file-selected:hover .view-icon {
   display: flex !important;
 }

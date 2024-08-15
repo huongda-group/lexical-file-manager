@@ -30,7 +30,8 @@ const IconFile = ({ mimetype, title, url }: Props) => {
         onHide={() => {
           setOpenPreview(false);
         }}
-        dialogClassName="panel rounded"
+        className="modal-preview"
+        dialogClassName="rounded"
         centered
       >
         <Modal.Header closeButton>{title}</Modal.Header>

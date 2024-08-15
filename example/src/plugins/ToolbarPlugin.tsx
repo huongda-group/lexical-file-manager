@@ -50,7 +50,14 @@ export default function ToolbarPlugin() {
       return {
         id: num.toString(),
         name: 'Image ' + (num + 1).toString(),
-        url: 'https://placehold.co/600x400/orange/white',
+        url:
+          num % 4 === 0
+            ? 'https://placehold.co/600x400/orange/white'
+            : num % 3 == 0 && num % 2 !== 0
+            ? 'https://www.kozco.com/tech/LRMonoPhase4.mp3'
+            : num % 2 === 0
+            ? 'https://file-examples.com/storage/fe519944ff66ba53b99c446/2017/04/file_example_MP4_480_1_5MG.mp4'
+            : 'https://placehold.co/600x400/orange/white',
         size: 10245 * num,
         mimetype:
           num % 4 === 0

@@ -27,9 +27,9 @@ See full [example](https://github.com/huongda-group/lexical-file-manager/tree/ma
 - [x] Loading status.
 - [ ] View file text.
 - [ ] Multiple language.
-- [ ] View file audio.
-- [ ] View file image
-- [ ] View file video
+- [x] View file audio.
+- [x] View file image
+- [x] View file video
 - [ ] Folder manager
 ***
 ## Getting started
@@ -94,28 +94,29 @@ import { FileManager } from '@huongda-group/lexical-file-manager';
       id: '1',
       name: 'Image 1',
       url: 'https://placehold.co/600x400/orange/white',
-      size: '150x150',
-      thumbnail: 'https://placehold.co/600x400/orange/white',
+      size: 1024,
+      mimetype: 'image/jpeg',
     },
     {
       id: '2',
-      name: 'Image 2',
-      url: 'https://placehold.co/600x400/black/white',
-      size: '150x150',
-      thumbnail: 'https://placehold.co/600x400/black/white',
+      name: 'Audio 1',
+      url: 'https://www.kozco.com/tech/LRMonoPhase4.mp3',
+      size: 1024,
+      mimetype: 'audio/mpeg',
     },
     {
       id: '3',
-      name: 'Image 3',
-      url: 'https://placehold.co/600x400/green/white',
-      size: '150x150',
-      thumbnail: 'https://placehold.co/600x400/green/white',
+      name: 'Video 1',
+      url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      size: 1024,
+      mimetype: 'video/mp4',
     },
     {
       id: '4',
-      name: 'Image 4',
-      url: 'https://placehold.co/600x400/green/white',
-      size: '150x150',
+      name: 'File 1',
+      url: 'https://example-files.online-convert.com/document/txt/example.txt',
+      size: 1024,
+      mimetype: 'text/plain'
     },
   ].map((item, index) => ({ ...item, index }))}
   aria-label="File Manager Multiple"
