@@ -177,6 +177,9 @@ Mimetype includes file types such as:
   - video/x-flv
   - video/x-matroska
   - video/mpeg
+- Other file
+  - string
+  ...
 ***
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/huongda-group/lexical-file-manager/blob/main/LICENSE)
