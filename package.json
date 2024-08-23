@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/huongda-group/lexical-file-manager.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "npm link && nodemon -e ts,tsx --exec npm run build:dev --ignore ./hdg",
