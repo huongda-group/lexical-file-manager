@@ -7,9 +7,8 @@
  */
 import {
   FileManager,
-  INSERT_FILE_COMMAND,
   FileItem,
-} from '@huongda-group/lexical-file-manager';
+} from '../../../hdg';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
 import {
