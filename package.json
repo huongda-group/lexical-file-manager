@@ -20,21 +20,21 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@lexical/react": "^0.23.1",
-    "@lexical/utils": "^0.23.1",
-    "bootstrap": "^5.3.3",
-    "lexical": "^0.23.1",
-    "react": "^19.0.0",
+    "@lexical/react": "^0.31.0",
+    "@lexical/utils": "^0.31.0",
+    "bootstrap": "^5.3.5",
+    "lexical": "^0.31.0",
+    "react": "^19.1.0",
     "react-bootstrap": "^2.10.9",
     "react-bootstrap-icons": "^1.11.5",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.15.3",
     "copyfiles": "^2.4.1",
-    "nodemon": "^3.1.9",
-    "tsc-alias": "~1.8.10",
-    "typescript": "^5.7.3"
+    "nodemon": "^3.1.10",
+    "tsc-alias": "~1.8.16",
+    "typescript": "^5.8.3"
   },
   "prettier": {
     "singleQuote": true
