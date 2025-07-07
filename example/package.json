@@ -4,28 +4,25 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npm link @huongda-group/lexical-file-manager && vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "upgrade": "npm install -g npm-check-updates && ncu -u && npm install"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@lexical/react": "0.23.1",
-    "@mui/icons-material": "^6.4.3",
-    "@mui/material": "^6.4.3",
-    "bootstrap": "^5.3.3",
-    "lexical": "0.23.1",
-    "react": "^19.0.0",
-    "react-bootstrap": "^2.10.9",
-    "react-dom": "^19.0.0"
+    "@huongda-group/react-file-manager": "^1.0.1",
+    "@lexical/react": "0.32.1",
+    "lexical": "0.32.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-modal": "^3.16.3"
   },
   "devDependencies": {
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.0"
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/react-modal": "^3.16.3",
+    "@vitejs/plugin-react": "^4.6.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
   }
 }
