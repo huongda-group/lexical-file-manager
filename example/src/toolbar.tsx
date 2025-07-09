@@ -23,6 +23,7 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 import Modal from 'react-modal';
 import {FileManager} from "@huongda-group/react-file-manager";
 import "@huongda-group/react-file-manager/dist/style.css";
+import { INSERT_IMAGE_COMMAND } from './components/lexical/plugins/ImagePlugin';
 
 // Configure Modal
 Modal.setAppElement('#root');
@@ -69,6 +70,7 @@ export default function ToolbarPlugin() {
       name: "Pic.png",
       isDirectory: false, // File
       path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
+      url: 'https://dummyimage.com/600x400/000/fff',
       updatedAt: "2024-09-08T16:45:00Z",
       size: 2048, // File size in bytes (example: 2 KB)
     },
@@ -217,7 +219,16 @@ export default function ToolbarPlugin() {
         }}
       >
         <h2>hello</h2>
-        <FileManager files={files} />
+        <FileManager files={files} enableFilePreview={false} onFileOpen={file => {
+          if (!file.isDirectory) {
+            debugger;
+            editor.dispatchCommand(INSERT_IMAGE_COMMAND, {
+              altText: file.url,
+              src: file.url
+            });
+            setShowModal(false); // Close modal after inserting
+          }
+        }} />
         <button
           onClick={() => setShowModal(false)}
           style={{
