@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $wrapNodeInElement, mergeRegister } from '@lexical/utils';
 import {
@@ -9,28 +8,32 @@ import {
   createCommand,
   LexicalCommand,
 } from 'lexical';
-import { useEffect } from 'react';
-import Node, { $createNode } from './node';
-import { FileItem } from './element';
+import { JSX, useEffect } from 'react';
 
-export const INSERT_FILE_COMMAND: LexicalCommand<FileItem> = createCommand(
-  'INSERT_FILE_COMMAND'
-);
+import { $createImageNode, ImageNode, ImagePayload } from './node/ImageNode';
 
-export default function Plugin(): JSX.Element {
+export type InsertImagePayload = Readonly<ImagePayload>;
+
+export const INSERT_FILE_COMMAND: LexicalCommand<InsertImagePayload> =
+  createCommand('INSERT_FILE_COMMAND');
+
+export default function ImagesPlugin({
+  captionsEnabled,
+}: {
+  captionsEnabled?: boolean;
+}): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
+
   useEffect(() => {
-    if (!editor.hasNodes([Node])) {
-      throw new Error(
-        'FileManagerPlugin: FileManagerNode not registered on editor'
-      );
+    if (!editor.hasNodes([ImageNode])) {
+      throw new Error('ImagesPlugin: ImageNode not registered on editor');
     }
 
     return mergeRegister(
-      editor.registerCommand<FileItem>(
+      editor.registerCommand<InsertImagePayload>(
         INSERT_FILE_COMMAND,
         (payload) => {
-          const imageNode = $createNode(payload);
+          const imageNode = $createImageNode(payload);
           $insertNodes([imageNode]);
           if ($isRootOrShadowRoot(imageNode.getParentOrThrow())) {
             $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
@@ -41,7 +44,7 @@ export default function Plugin(): JSX.Element {
         COMMAND_PRIORITY_EDITOR
       )
     );
-  }, [editor]);
+  }, [captionsEnabled, editor]);
 
-  return <></>;
+  return null;
 }

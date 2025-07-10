@@ -1,3 +1,5 @@
+/// &lt;reference types="../types/react-file-manager" /&gt;
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -21,9 +23,7 @@ import {
 } from 'lexical';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import Modal from 'react-modal';
-import {FileManager} from "@huongda-group/react-file-manager";
-import "@huongda-group/react-file-manager/dist/style.css";
-import { INSERT_IMAGE_COMMAND } from './components/lexical/plugins/ImagePlugin';
+import { FileManager, INSERT_FILE_COMMAND, File } from "@huongda-group/lexical-file-manager";
 
 // Configure Modal
 Modal.setAppElement('#root');
@@ -219,12 +219,11 @@ export default function ToolbarPlugin() {
         }}
       >
         <h2>hello</h2>
-        <FileManager files={files} enableFilePreview={false} onFileOpen={file => {
+        <FileManager files={files} enableFilePreview={false} onFileOpen={(file: File) => {
           if (!file.isDirectory) {
-            debugger;
-            editor.dispatchCommand(INSERT_IMAGE_COMMAND, {
-              altText: file.url,
-              src: file.url
+            editor.dispatchCommand(INSERT_FILE_COMMAND, {
+              altText: file.url?? '',
+              src: file.url?? ''
             });
             setShowModal(false); // Close modal after inserting
           }

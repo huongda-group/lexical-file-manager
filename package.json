@@ -20,6 +20,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@huongda-group/react-file-manager": "^1.0.1",
     "@lexical/react": "^0.32.1",
     "@lexical/utils": "^0.32.1",
     "lexical": "^0.32.1",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.4",
+    "@types/react": "^19.1.8",
     "copyfiles": "^2.4.1",
     "nodemon": "^3.1.10",
     "tsc-alias": "~1.8.16",
@@ -35,6 +37,9 @@
   },
   "main": "./hdg/index.js",
   "types": "./hdg/index.d.ts",
+  "files": [
+    "hdg"
+  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
