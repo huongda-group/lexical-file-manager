@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LexicalEditor, EditorState, $createEditor } from 'lexical';
+import { LexicalEditor, EditorState } from 'lexical';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import Modal from 'react-modal';
 

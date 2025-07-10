@@ -1,10 +1,62 @@
-import ButtonComponent from './button';
-import Plugin, { INSERT_FILE_COMMAND as COMMAND } from './plugin';
-import Node from './node';
+import { FileManager as FileManagerLib } from "@huongda-group/react-file-manager";
+import { ImageNode } from './node/ImageNode';
+import Plugin, { INSERT_FILE_COMMAND as INSERT_FILE_COMMAND_LIB, OPEN_FILE_MANAGER_COMMAND as OPEN_FILE_MANAGER_COMMAND_LIB, CONFIG_FILE_MANAGER_COMMAND as CONFIG_FILE_MANAGER_COMMAND_LIB } from './plugin';
+import React from "react";
+import { FileManagerModalProps, FileManagerProps } from "./types/FileManagerProps";
+import Modal from 'react-modal';
+// Configure Modal
+Modal.setAppElement('#root');
+import "@huongda-group/react-file-manager/dist/style.css";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
-export const FileManager = ButtonComponent;
+export type { File, FileManagerPermissions, FileManagerProps, FileUploadConfig, FileManagerModalProps } from './types/FileManagerProps';
+
+export const FileManager: React.FC<FileManagerProps> = FileManagerLib;
 export const FileManagerPlugin = Plugin;
-export const FileManagerNode = Node;
-export const INSERT_FILE_COMMAND = COMMAND;
+export const FileManagerNode = ImageNode;
+export const INSERT_FILE_COMMAND = INSERT_FILE_COMMAND_LIB;
+export const OPEN_FILE_MANAGER_COMMAND = OPEN_FILE_MANAGER_COMMAND_LIB;
+export const CONFIG_FILE_MANAGER_COMMAND = CONFIG_FILE_MANAGER_COMMAND_LIB;
 
-export * from './element';
+export const FileMangaerModal = ({open, setOpen, title="File Manager", files, ...rest} : FileManagerModalProps) => {
+  const [editor] = useLexicalComposerContext();
+
+  return (
+    <Modal
+      isOpen={open}
+      onRequestClose={() => setOpen(false)}
+      contentLabel="Hello Modal"
+      style={{
+        content: {
+        },
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }}
+    >
+      <h2>{title}</h2>
+      <FileManager enableFilePreview={false} files={files} onFileOpen={(file) => {
+        if (!file.isDirectory) {
+          editor.dispatchCommand(INSERT_FILE_COMMAND, {
+            altText: file.url?? '',
+            src: file.url?? ''
+          });
+          setOpen(false);
+        }
+      }} {...rest}/>
+      <button
+        onClick={() => setOpen(false)}
+        style={{
+          padding: '8px 16px',
+          backgroundColor: '#f0f0f0',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+          marginTop: '10px'
+        }}
+      >
+        Close
+      </button>
+    </Modal>
+  )
+}

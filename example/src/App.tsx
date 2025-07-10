@@ -6,6 +6,7 @@ import {ContentEditable} from '@lexical/react/LexicalContentEditable';
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
 import {LexicalErrorBoundary} from '@lexical/react/LexicalErrorBoundary';
 import { $isTextNode, DOMConversionMap, DOMExportOutput, DOMExportOutputMap, isHTMLElement, Klass, LexicalEditor, LexicalNode, ParagraphNode, TextNode } from "lexical";
+import { FileManagerNode, FileManagerPlugin } from '@huongda-group/lexical-file-manager';
 
 const removeStylesExportDOM = (
   editor: LexicalEditor,
@@ -125,7 +126,7 @@ function Editor() {
       import: constructImportMap(),
     },
     namespace: 'React.js Demo',
-    nodes: [ParagraphNode, TextNode],
+    nodes: [ParagraphNode, TextNode, FileManagerNode],
     onError(error: Error) {
       throw error;
     }
@@ -151,6 +152,7 @@ function Editor() {
           <HistoryPlugin />
           <AutoFocusPlugin />
           {/*<TreeViewPlugin />*/}
+          <FileManagerPlugin />
         </div>
       </div>
     </LexicalComposer>
