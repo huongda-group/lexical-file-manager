@@ -22,11 +22,7 @@ import {
   UNDO_COMMAND,
 } from 'lexical';
 import {useCallback, useEffect, useRef, useState} from 'react';
-import Modal from 'react-modal';
-import { FileManager, INSERT_FILE_COMMAND, File } from "@huongda-group/lexical-file-manager";
-
-// Configure Modal
-Modal.setAppElement('#root');
+import { CONFIG_FILE_MANAGER_COMMAND, FileManager, INSERT_FILE_COMMAND, OPEN_FILE_MANAGER_COMMAND } from "@huongda-group/lexical-file-manager";
 
 function Divider() {
   return <div className="divider" />;
@@ -53,28 +49,6 @@ export default function ToolbarPlugin() {
       setIsStrikethrough(selection.hasFormat('strikethrough'));
     }
   }, []);
-  const [files, setFiles] = useState([
-    {
-      name: "Documents",
-      isDirectory: true, // Folder
-      path: "/Documents", // Located in Root directory
-      updatedAt: "2024-09-09T10:30:00Z", // Last updated time
-    },
-    {
-      name: "Pictures",
-      isDirectory: true,
-      path: "/Pictures", // Located in Root directory as well
-      updatedAt: "2024-09-09T11:00:00Z",
-    },
-    {
-      name: "Pic.png",
-      isDirectory: false, // File
-      path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
-      url: 'https://dummyimage.com/600x400/000/fff',
-      updatedAt: "2024-09-08T16:45:00Z",
-      size: 2048, // File size in bytes (example: 2 KB)
-    },
-  ]);
 
   useEffect(() => {
     return mergeRegister(
@@ -199,49 +173,37 @@ export default function ToolbarPlugin() {
       <Divider />
       <button
         onClick={() => {
-          setShowModal(true);
+          // setShowModal(true);
+          editor.dispatchCommand(OPEN_FILE_MANAGER_COMMAND, true);
+          editor.dispatchCommand(CONFIG_FILE_MANAGER_COMMAND,{
+            files: [
+              {
+                name: "Documents",
+                isDirectory: true, // Folder
+                path: "/Documents", // Located in Root directory
+                updatedAt: "2024-09-09T10:30:00Z", // Last updated time
+              },
+              {
+                name: "Pictures",
+                isDirectory: true,
+                path: "/Pictures", // Located in Root directory as well
+                updatedAt: "2024-09-09T11:00:00Z",
+              },
+              {
+                name: "Pic.png",
+                isDirectory: false, // File
+                path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
+                url: 'https://dummyimage.com/600x400/000/fff',
+                updatedAt: "2024-09-08T16:45:00Z",
+                size: 2048, // File size in bytes (example: 2 KB)
+              },
+            ]
+          })
         }}
         className="toolbar-item spaced"
         aria-label="Show Hello Modal">
         <i className="format hello-icon" />
       </button>
-
-      <Modal
-        isOpen={showModal}
-        onRequestClose={() => setShowModal(false)}
-        contentLabel="Hello Modal"
-        style={{
-          content: {
-          },
-          overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }}
-      >
-        <h2>hello</h2>
-        <FileManager files={files} enableFilePreview={false} onFileOpen={(file: File) => {
-          if (!file.isDirectory) {
-            editor.dispatchCommand(INSERT_FILE_COMMAND, {
-              altText: file.url?? '',
-              src: file.url?? ''
-            });
-            setShowModal(false); // Close modal after inserting
-          }
-        }} />
-        <button
-          onClick={() => setShowModal(false)}
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#f0f0f0',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginTop: '10px'
-          }}
-        >
-          Close
-        </button>
-      </Modal>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type File = {
   name: string;
   isDirectory: boolean;
@@ -60,4 +62,15 @@ export interface FileManagerProps {
   permissions?: FileManagerPermissions;
   primaryColor?: string;
   width?: string | number;
+}
+
+export interface FileManagerModalProps extends FileManagerProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  title?: string;
+}
+
+export interface FileManagerModalConfig {
+  title?: string;
+  files?: File[];
 }
