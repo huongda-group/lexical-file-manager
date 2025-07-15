@@ -7,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {mergeRegister} from '@lexical/utils';
+import { CONFIG_FILE_MANAGER_COMMAND, OPEN_FILE_MANAGER_COMMAND } from "@huongda-group/lexical-file-manager";
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { mergeRegister } from '@lexical/utils';
 import {
   $getSelection,
   $isRangeSelection,
@@ -21,8 +22,7 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from 'lexical';
-import {useCallback, useEffect, useRef, useState} from 'react';
-import { CONFIG_FILE_MANAGER_COMMAND, FileManager, INSERT_FILE_COMMAND, OPEN_FILE_MANAGER_COMMAND } from "@huongda-group/lexical-file-manager";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 function Divider() {
   return <div className="divider" />;
