@@ -197,7 +197,8 @@ export default function ToolbarPlugin() {
                 updatedAt: "2024-09-08T16:45:00Z",
                 size: 2048, // File size in bytes (example: 2 KB)
               },
-            ]
+            ],
+            title: "File Manager Modal"
           })
         }}
         className="toolbar-item spaced"
