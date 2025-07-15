@@ -116,7 +116,8 @@ const [editor] = useLexicalComposerContext();
           updatedAt: "2024-09-08T16:45:00Z",
           size: 2048, // File size in bytes (example: 2 KB)
         },
-      ]
+      ],
+      title: "File Manager Modal"
     })
   }}
   aria-label="Show File Manager Modal">
@@ -141,7 +142,7 @@ type File = {
 
 ## ⚙️ Props
 
-| Name                   | Type                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Name                   | Type                                                                                                                            | Description        |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `acceptedFileTypes`    | string                                                                                                                          | (Optional) A comma-separated list of allowed file extensions for uploading specific file types (e.g., `.txt, .png, .pdf`). If omitted, all file types are accepted.                                                                                                                                                                                                                                                                                                                                                             |
 | `collapsibleNav`       | boolean                                                                                                                         | Enables a collapsible navigation pane on the left side. When `true`, a toggle will be shown to expand or collapse the navigation pane. `default: false`.                                                                                                                                                                                                                                                                                                                                                                        |
