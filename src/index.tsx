@@ -33,15 +33,18 @@ export const FileManagerModal = ({open, setOpen, title="File Manager", files, ..
       }}
     >
       <h2>{title}</h2>
-      <FileManager enableFilePreview={false} files={files} onFileOpen={(file) => {
-        if (!file.isDirectory) {
-          editor.dispatchCommand(INSERT_FILE_COMMAND, {
-            altText: file.url?? '',
-            src: file.url?? ''
-          });
-          setOpen(false);
-        }
-      }} {...rest}/>
+      <FileManager enableFilePreview={false} files={files} 
+        onFileOpen={(file) => {
+          if (!file.isDirectory) {
+            editor.dispatchCommand(INSERT_FILE_COMMAND, {
+              altText: file.url?? '',
+              src: file.url?? ''
+            });
+            setOpen(false);
+          }
+        }} 
+        {...rest}
+      />
       <button
         onClick={() => setOpen(false)}
         style={{

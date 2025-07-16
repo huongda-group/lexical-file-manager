@@ -121,9 +121,20 @@ const [showModal, setShowModal] = useState(false);
   ]}
   title="File Manager" // (title is optional. See API for more)
 />
-
 ```
-## 📂 File Structure
+By default, FileManagerModal using onFileOpen to insert file to lexical. You can use your own onFileOpen
+```jsx
+onFileOpen={(file: File) => {
+  if (!file.isDirectory) {
+    editor.dispatchCommand(INSERT_FILE_COMMAND, {
+      altText: file.url?? '',
+      src: file.url?? ''
+    });
+    setOpen(false);
+  }
+}}
+```
+## File Structure
 
 The `files` prop accepts an array of objects, where each object represents a file or folder. You can
 customize the structure to meet your application needs. Each file or folder object follows the
@@ -140,7 +151,7 @@ type File = {
 };
 ```
 
-## Props
+## Props of FileManagerModal
 
 | Name                   | Type                                                                                                                            | Description        |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
