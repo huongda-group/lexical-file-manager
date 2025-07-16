@@ -122,7 +122,7 @@ const [showModal, setShowModal] = useState(false);
   title="File Manager" // (title is optional. See API for more)
 />
 ```
-By default, FileManagerModal using onFileOpen and enableFilePreview={false} to insert file to lexical. You can use your own onFileOpen and enableFilePreview to override
+By default, FileManagerModal using onFileOpen below and enableFilePreview={false} to insert file to lexical. You can use your own onFileOpen and enableFilePreview to override
 ```jsx
 onFileOpen={(file: File) => {
   if (!file.isDirectory) {
@@ -133,6 +133,20 @@ onFileOpen={(file: File) => {
     setOpen(false);
   }
 }}
+```
+Interface payload of command INSERT_FILE_COMMAND
+```jsx
+export interface ImagePayload {
+  altText: string;
+  src: string;
+  caption?: LexicalEditor;
+  height?: number;
+  key?: NodeKey;
+  maxWidth?: number;
+  showCaption?: boolean;
+  width?: number;
+  captionsEnabled?: boolean;
+}
 ```
 ## File Structure
 
