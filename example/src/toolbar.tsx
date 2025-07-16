@@ -1,3 +1,5 @@
+/// &lt;reference types="../types/react-file-manager" /&gt;
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -5,8 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {mergeRegister} from '@lexical/utils';
+import { CONFIG_FILE_MANAGER_COMMAND, OPEN_FILE_MANAGER_COMMAND } from "@huongda-group/lexical-file-manager";
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { mergeRegister } from '@lexical/utils';
 import {
   $getSelection,
   $isRangeSelection,
@@ -19,13 +22,7 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from 'lexical';
-import {useCallback, useEffect, useRef, useState} from 'react';
-import Modal from 'react-modal';
-import {FileManager} from "@huongda-group/react-file-manager";
-import "@huongda-group/react-file-manager/dist/style.css";
-
-// Configure Modal
-Modal.setAppElement('#root');
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 function Divider() {
   return <div className="divider" />;
@@ -52,27 +49,6 @@ export default function ToolbarPlugin() {
       setIsStrikethrough(selection.hasFormat('strikethrough'));
     }
   }, []);
-  const [files, setFiles] = useState([
-    {
-      name: "Documents",
-      isDirectory: true, // Folder
-      path: "/Documents", // Located in Root directory
-      updatedAt: "2024-09-09T10:30:00Z", // Last updated time
-    },
-    {
-      name: "Pictures",
-      isDirectory: true,
-      path: "/Pictures", // Located in Root directory as well
-      updatedAt: "2024-09-09T11:00:00Z",
-    },
-    {
-      name: "Pic.png",
-      isDirectory: false, // File
-      path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
-      updatedAt: "2024-09-08T16:45:00Z",
-      size: 2048, // File size in bytes (example: 2 KB)
-    },
-  ]);
 
   useEffect(() => {
     return mergeRegister(
@@ -197,41 +173,38 @@ export default function ToolbarPlugin() {
       <Divider />
       <button
         onClick={() => {
-          setShowModal(true);
+          // setShowModal(true);
+          editor.dispatchCommand(OPEN_FILE_MANAGER_COMMAND, true);
+          editor.dispatchCommand(CONFIG_FILE_MANAGER_COMMAND,{
+            files: [
+              {
+                name: "Documents",
+                isDirectory: true, // Folder
+                path: "/Documents", // Located in Root directory
+                updatedAt: "2024-09-09T10:30:00Z", // Last updated time
+              },
+              {
+                name: "Pictures",
+                isDirectory: true,
+                path: "/Pictures", // Located in Root directory as well
+                updatedAt: "2024-09-09T11:00:00Z",
+              },
+              {
+                name: "Pic.png",
+                isDirectory: false, // File
+                path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
+                url: 'https://dummyimage.com/600x400/000/fff',
+                updatedAt: "2024-09-08T16:45:00Z",
+                size: 2048, // File size in bytes (example: 2 KB)
+              },
+            ],
+            title: "File Manager Modal"
+          })
         }}
         className="toolbar-item spaced"
         aria-label="Show Hello Modal">
         <i className="format hello-icon" />
       </button>
-
-      <Modal
-        isOpen={showModal}
-        onRequestClose={() => setShowModal(false)}
-        contentLabel="Hello Modal"
-        style={{
-          content: {
-          },
-          overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }}
-      >
-        <h2>hello</h2>
-        <FileManager files={files} />
-        <button
-          onClick={() => setShowModal(false)}
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#f0f0f0',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginTop: '10px'
-          }}
-        >
-          Close
-        </button>
-      </Modal>
     </div>
   );
 }
