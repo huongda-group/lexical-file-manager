@@ -7,7 +7,6 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import { CONFIG_FILE_MANAGER_COMMAND, OPEN_FILE_MANAGER_COMMAND } from "@huongda-group/lexical-file-manager";
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
 import {
@@ -23,6 +22,7 @@ import {
   UNDO_COMMAND,
 } from 'lexical';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { FileManagerModal } from '@huongda-group/lexical-file-manager';
 
 function Divider() {
   return <div className="divider" />;
@@ -173,38 +173,35 @@ export default function ToolbarPlugin() {
       <Divider />
       <button
         onClick={() => {
-          // setShowModal(true);
-          editor.dispatchCommand(OPEN_FILE_MANAGER_COMMAND, true);
-          editor.dispatchCommand(CONFIG_FILE_MANAGER_COMMAND,{
-            files: [
-              {
-                name: "Documents",
-                isDirectory: true, // Folder
-                path: "/Documents", // Located in Root directory
-                updatedAt: "2024-09-09T10:30:00Z", // Last updated time
-              },
-              {
-                name: "Pictures",
-                isDirectory: true,
-                path: "/Pictures", // Located in Root directory as well
-                updatedAt: "2024-09-09T11:00:00Z",
-              },
-              {
-                name: "Pic.png",
-                isDirectory: false, // File
-                path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
-                url: 'https://dummyimage.com/600x400/000/fff',
-                updatedAt: "2024-09-08T16:45:00Z",
-                size: 2048, // File size in bytes (example: 2 KB)
-              },
-            ],
-            title: "File Manager Modal"
-          })
+          setShowModal(true);
         }}
         className="toolbar-item spaced"
         aria-label="Show Hello Modal">
         <i className="format hello-icon" />
       </button>
+      <FileManagerModal open={showModal} setOpen={setShowModal} files={[
+          {
+            name: "Documents",
+            isDirectory: true, // Folder
+            path: "/Documents", // Located in Root directory
+            updatedAt: "2024-09-09T10:30:00Z", // Last updated time
+          },
+          {
+            name: "Pictures",
+            isDirectory: true,
+            path: "/Pictures", // Located in Root directory as well
+            updatedAt: "2024-09-09T11:00:00Z",
+          },
+          {
+            name: "Pic.png",
+            isDirectory: false, // File
+            path: "/Pictures/Pic.png", // Located inside the "Pictures" folder
+            url: 'https://dummyimage.com/600x400/000/fff',
+            updatedAt: "2024-09-08T16:45:00Z",
+            size: 2048, // File size in bytes (example: 2 KB)
+          },
+        ]}
+      />
     </div>
   );
 }
