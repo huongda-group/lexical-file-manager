@@ -1,6 +1,6 @@
 import { FileManager as FileManagerLib } from "@huongda-group/react-file-manager";
 import { ImageNode } from './node/ImageNode';
-import Plugin, { INSERT_FILE_COMMAND as INSERT_FILE_COMMAND_LIB, OPEN_FILE_MANAGER_COMMAND as OPEN_FILE_MANAGER_COMMAND_LIB, CONFIG_FILE_MANAGER_COMMAND as CONFIG_FILE_MANAGER_COMMAND_LIB } from './plugin';
+import Plugin, { INSERT_FILE_COMMAND as INSERT_FILE_COMMAND_LIB, } from './plugin';
 import React from "react";
 import { FileManagerModalProps, FileManagerProps } from "./types/FileManagerProps";
 import Modal from 'react-modal';
@@ -15,17 +15,15 @@ export const FileManager: React.FC<FileManagerProps> = FileManagerLib;
 export const FileManagerPlugin = Plugin;
 export const FileManagerNode = ImageNode;
 export const INSERT_FILE_COMMAND = INSERT_FILE_COMMAND_LIB;
-export const OPEN_FILE_MANAGER_COMMAND = OPEN_FILE_MANAGER_COMMAND_LIB;
-export const CONFIG_FILE_MANAGER_COMMAND = CONFIG_FILE_MANAGER_COMMAND_LIB;
 
-export const FileMangaerModal = ({open, setOpen, title="File Manager", files, ...rest} : FileManagerModalProps) => {
+export const FileManagerModal = ({open, setOpen, title="File Manager", files, ...rest} : FileManagerModalProps) => {
   const [editor] = useLexicalComposerContext();
 
   return (
     <Modal
       isOpen={open}
       onRequestClose={() => setOpen(false)}
-      contentLabel="Hello Modal"
+      contentLabel="Modal"
       style={{
         content: {
         },
@@ -35,15 +33,18 @@ export const FileMangaerModal = ({open, setOpen, title="File Manager", files, ..
       }}
     >
       <h2>{title}</h2>
-      <FileManager enableFilePreview={false} files={files} onFileOpen={(file) => {
-        if (!file.isDirectory) {
-          editor.dispatchCommand(INSERT_FILE_COMMAND, {
-            altText: file.url?? '',
-            src: file.url?? ''
-          });
-          setOpen(false);
-        }
-      }} {...rest}/>
+      <FileManager enableFilePreview={false} files={files} 
+        onFileOpen={(file) => {
+          if (!file.isDirectory) {
+            editor.dispatchCommand(INSERT_FILE_COMMAND, {
+              altText: file.url?? '',
+              src: file.url?? ''
+            });
+            setOpen(false);
+          }
+        }} 
+        {...rest}
+      />
       <button
         onClick={() => setOpen(false)}
         style={{
